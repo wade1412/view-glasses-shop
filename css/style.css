@@ -33,7 +33,13 @@ html {
   font-family: Golos Text, sans-serif;
   color: var(--color-text-primary);
   font-size: clamp(14px, 2vh, 18px);
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-surface);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 
 .header {
@@ -92,6 +98,7 @@ a:focus {
   transition: width 0.2s ease-in-out;
 }
 
+/*animation for hover and active states*/
 .nav-item:hover::before {
   width: 100%; /* expand to full width on hover */
 }
@@ -107,4 +114,66 @@ a:focus {
 
 .nav-item:active::before {
   background-color: var(--color-text-muted);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5rem;
+}
+
+.intro {
+  text-align: center;
+  margin-top: var(--space-big);
+  font-size: var(--space-big);
+}
+
+/*Footer styling*/
+.footer {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  bottom: 0;
+  width: 100%;
+  padding: 0 2rem;
+  height: 120px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: space-around;
+  padding: var(--space-extra-small);
+  gap: var(--space-big);
+}
+
+.fab {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.social-link {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  transition: all 0.2s ease-in-out;
+}
+
+.social-link:hover {
+  color: var(--color-text-primary);
+}
+
+.social-link:active {
+  color: var(--color-text-secondary);
+}
+
+.footer-logo-div {
+  margin-left: auto;
+}
+
+.footer-logo {
+  filter: contrast(0%);
 }
