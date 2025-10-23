@@ -43,9 +43,12 @@ body {
   margin: 0;
 }
 
+/*Header styling*/
 .header {
   display: flex;
   position: sticky;
+  top: 0;
+  z-index: 99;
   justify-content: space-between;
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
@@ -116,6 +119,7 @@ a:focus {
 .nav-item:active::before {
   background-color: var(--color-text-muted);
 }
+/*Header styling*/
 
 .main-container {
   display: flex;
@@ -133,7 +137,7 @@ a:focus {
 /*Footer styling*/
 .footer {
   display: flex;
-  position: fixed;
+  position: relative;
   align-items: center;
   bottom: 0;
   width: 100%;
@@ -184,27 +188,56 @@ a:focus {
 
 .products-header {
   font-size: var(--space-big);
-  padding: 0 var(--space-medium);
+  padding: var(--space-medium);
 }
 
 .products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto;
-  gap: var(--space-big);
+  gap: var(--space-medium);
   justify-content: center;
-  align-content: start;
+  align-items: center;
   padding: var(--space-medium);
+  margin: var(--space-big) auto;
+  opacity: 1;
+  transition: opacity 0.35s ease-in-out;
+}
+
+@media (min-width: 992px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .product-card {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: var(--space-medium);
-  width: 100%;
+  padding: var(--space-big);
+  width: min(100%, 400px);
   height: 100%;
-  border: 1px solid black;
+  transition: all 0.2s ease-in-out;
+  border-radius: var(--space-extra-small);
+  margin: 0 auto;
+}
+
+.product-card:hover {
+  box-shadow: 1px 1px var(--space-big) var(--color-bg-secondary);
+  transform: translateY(-0.2rem);
+  cursor: pointer;
 }
 
 .product-image {
@@ -213,4 +246,32 @@ a:focus {
   object-fit: contain;
   align-self: center;
   padding: var(--space-medium);
+}
+
+.product-name,
+.product-price,
+.product-frame {
+  margin-bottom: var(--space-small);
+}
+
+.product-price {
+  font-style: italic;
+}
+
+/* Search Styles*/
+
+.no-results {
+  font-size: inherit;
+  padding: var(--space-big);
+  color: var(--color-text-secondary);
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.53s ease-in-out;
 }

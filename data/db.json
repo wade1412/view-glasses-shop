@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Aviator Classic",
-      "price": 129.99,
+      "price": 129,
       "image": "https://media.istockphoto.com/id/451094367/photo/silver-aviator-glasses-with-black-lenses.jpg?s=612x612&w=0&k=20&c=OR6K4iL7wy7QYayTed8MfJ1gfsDT4p2xZvTZDdADUaI=",
       "category": "sunglasses",
       "frame": "metal",
@@ -13,7 +13,7 @@
     {
       "id": 2,
       "name": "Round Vintage",
-      "price": 89.99,
+      "price": 89,
       "image": "https://media.istockphoto.com/id/486575074/photo/circle-glasses.jpg?s=612x612&w=0&k=20&c=RYtrYdnWlIRCnhiot_MZP27pHmPjfurzs1xa4WSo6cU=",
       "category": "eyeglasses",
       "frame": "acetate",
@@ -23,7 +23,7 @@
     {
       "id": 3,
       "name": "Urban Matte",
-      "price": 99.5,
+      "price": 99,
       "image": "https://visiondrishti.com/wp-content/uploads/2025/03/Mint-Green-Urban-Bold-Sunglasses-9.jpg",
       "category": "eyeglasses",
       "frame": "metal",
@@ -33,7 +33,7 @@
     {
       "id": 4,
       "name": "Sunset Gradient",
-      "price": 119.99,
+      "price": 119,
       "image": "https://media.istockphoto.com/id/1438350373/photo/pair-of-sunglasses-on-the-beach-with-the-reflection-of-the-sunset.jpg?s=612x612&w=0&k=20&c=a0FfYmfbrOAtfBFG78L3hiHMhdNS68drwfxqCR7jrDs=",
       "category": "sunglasses",
       "frame": "plastic",
@@ -43,7 +43,7 @@
     {
       "id": 5,
       "name": "Minimal Clear",
-      "price": 79.99,
+      "price": 79,
       "image": "https://png.pngtree.com/png-clipart/20250525/original/pngtree-eyeglasses-with-clear-lenses-isolated-on-white-background-png-image_21078669.png",
       "category": "eyeglasses",
       "frame": "acetate",
@@ -52,18 +52,8 @@
     },
     {
       "id": 6,
-      "name": "Explorer Polarized",
-      "price": 139.0,
-      "image": "https://shadyrays.com/cdn/shop/files/clipboard_3.png?v=1710428347&width=600",
-      "category": "sunglasses",
-      "frame": "metal",
-      "color": "gunmetal",
-      "description": "Polarized explorer sunglasses for ultimate glare reduction and comfort."
-    },
-    {
-      "id": 7,
       "name": "Square Classic",
-      "price": 109.99,
+      "price": 99,
       "image": "https://res.ygstatic.com/frame/1330/13301/1/2.1800.1658999361-f5f.jpg",
       "category": "eyeglasses",
       "frame": "acetate",
@@ -71,9 +61,9 @@
       "description": "Classic square frame eyeglasses made from premium acetate."
     },
     {
-      "id": 8,
+      "id": 7,
       "name": "Retro Gold Wire",
-      "price": 99.99,
+      "price": 99,
       "image": "https://media.istockphoto.com/id/637218182/photo/classic-gold-round-glasses.jpg?s=612x612&w=0&k=20&c=MXCzXDYhxiXR8uuBPJkXIIjnoLARHt4kal5OFzo168M=",
       "category": "eyeglasses",
       "frame": "metal",
@@ -81,9 +71,9 @@
       "description": "Delicate gold wireframe glasses with retro-inspired round lenses."
     },
     {
-      "id": 9,
+      "id": 8,
       "name": "Ocean Wave",
-      "price": 119.99,
+      "price": 99,
       "image": "https://oceanwaves.com/cdn/shop/files/JXB-WHT-OSB_5fb1cb5f-f78f-42f7-90ed-6f7c00ffd4e4.jpg?v=1704207619",
       "category": "sunglasses",
       "frame": "plastic",
@@ -91,9 +81,9 @@
       "description": "Deep blue gradient sunglasses that capture the calm of the ocean."
     },
     {
-      "id": 10,
+      "id": 9,
       "name": "Carbon Edge",
-      "price": 149.99,
+      "price": 149,
       "image": "https://www.acmetools.com/on/demandware.static/-/Sites-acme-catalog-m-en/default/dw7b3f55b5/images/images/catalog/product/697920024577/edge-khor-g2-polarized-safety-glasses-vapor-shield-black-frame-smoke-lens-tsdk216vs-g2-detail-view-1.jpg",
       "category": "sunglasses",
       "frame": "carbon fiber",

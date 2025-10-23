@@ -27,12 +27,24 @@
         <a href="./cart.html" class="nav-item">Cart</a>
       </nav>
     </header>
-    <h2 class="products-header">Products</h2>
-    <div class="search-filter-bar">
-      <input type="text" placeholder="Search" />
-    </div>
 
-    <div class="products-grid" id="products-container"></div>
+    <main class="products-main">
+      <h2 class="products-header">Products</h2>
+      <div class="search-filter-bar">
+        <label for="type-filter">Filter by type:</label>
+        <select id="type-filter">
+          <option value="all">All</option>
+          <option value="sunglasses">Sunglasses</option>
+          <option value="eyeglasses">Eyeglasses</option>
+        </select>
+        <input id="search-input" type="text" placeholder="Search..." />
+        <button id="clear-search-button" class="clear-search-button">
+          Clear
+        </button>
+      </div>
+
+      <div class="products-grid fade-out" id="products-container"></div>
+    </main>
 
     <div class="footer">
       <div class="social-icons">
