@@ -27,6 +27,7 @@
   --space-small: 0.5rem;
   --space-medium: 1rem;
   --space-big: 2rem;
+  --space-extra-big: 4rem;
 }
 
 html {
@@ -176,4 +177,40 @@ a:focus {
 
 .footer-logo {
   filter: contrast(0%);
+}
+/*Footer styling*/
+
+/*Product page styling*/
+
+.products-header {
+  font-size: var(--space-big);
+  padding: 0 var(--space-medium);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: var(--space-big);
+  justify-content: center;
+  align-content: start;
+  padding: var(--space-medium);
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: var(--space-medium);
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}
+
+.product-image {
+  width: 300px;
+  height: 200px;
+  object-fit: contain;
+  align-self: center;
+  padding: var(--space-medium);
 }
