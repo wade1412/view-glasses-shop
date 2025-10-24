@@ -19,7 +19,9 @@
 
   <body>
     <header class="header">
-      <img class="logo" src="../resources/view_glasses_logo.png" alt="logo" />
+      <a class="logo-link" href="./index.html"
+        ><img class="logo" src="../resources/view_glasses_logo.png" alt="logo"
+      /></a>
       <nav class="nav-bar">
         <a href="./index.html" class="nav-item">Home</a>
         <a href="./products.html" class="nav-item">Products</a>
@@ -31,12 +33,14 @@
     <main class="products-main">
       <h2 class="products-header">Products</h2>
       <div class="search-filter-bar">
-        <label for="type-filter">Filter by type:</label>
-        <select id="type-filter">
+        <label for="sort-option">Sort by:</label>
+        <select id="sort-option" class="sort-option-select">
           <option value="all">All</option>
-          <option value="sunglasses">Sunglasses</option>
-          <option value="eyeglasses">Eyeglasses</option>
+          <option value="name">Name</option>
+          <option value="price">Price</option>
+          <option value="category">Category</option>
         </select>
+
         <input id="search-input" type="text" placeholder="Search..." />
         <button id="clear-search-button" class="clear-search-button">
           Clear
@@ -63,7 +67,7 @@
         ></a>
       </div>
       <div class="footer-logo-div">
-        <a class="social-link" href="./index.html"
+        <a class="footer-logo-link" href="./index.html"
           ><img
             class="logo footer-logo"
             src="../resources/view_glasses_logo.png"
