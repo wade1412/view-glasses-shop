@@ -14,7 +14,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <title>View Glasses - Home Page</title>
+    <title>View Glasses - Products</title>
   </head>
 
   <body>
@@ -33,13 +33,16 @@
     <main class="products-main">
       <h2 class="products-header">Products</h2>
       <div class="search-filter-bar">
-        <label for="sort-option">Sort by:</label>
-        <select id="sort-option" class="sort-option-select">
-          <option value="all">All</option>
-          <option value="name">Name</option>
-          <option value="price">Price</option>
-          <option value="category">Category</option>
-        </select>
+        <div class="sort-wrapper">
+          <label for="sort-option" class="sort-label">Sort by:</label>
+          <select id="sort-option" class="sort-option-select">
+            <option value="all">All</option>
+            <option value="name">Name</option>
+            <option value="price">Price</option>
+            <option value="category">Category</option>
+          </select>
+          <span id="sort-indicator" class="sort-indicator">↑</span>
+        </div>
 
         <input id="search-input" type="text" placeholder="Search..." />
         <button id="clear-search-button" class="clear-search-button">

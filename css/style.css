@@ -174,7 +174,7 @@ a:focus {
 }
 
 .social-link:active,
-.footer-logo-link:hover {
+.footer-logo-link:active {
   color: var(--color-text-secondary);
 }
 
@@ -271,20 +271,54 @@ a:focus {
   font-style: italic;
 }
 
-/* Search Styles*/
+/*fade animation for cards*/
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Search-Filter-Sort Styles*/
 
 .no-results {
   font-size: inherit;
   padding: var(--space-big);
   color: var(--color-text-secondary);
 }
-
-.fade-out {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+/*Sort-styling*/
+.sort-wrapper {
+  display: flex;
+  gap: var(--space-small);
+  align-items: center;
+  text-align: center;
 }
 
-.fade-in {
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+.sort-label:hover {
+  cursor: pointer;
+}
+
+.sort-indicator {
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  transition: transform 0.25s ease-in-out, color 0.2s ease-in-out;
+  display: inline-block;
+}
+
+.sort-indicator.ascending {
+  transform: rotate(0deg);
+}
+
+.sort-indicator.descending {
+  transform: rotate(180deg);
+}
+
+.sort-indicator:hover {
+  cursor: pointer;
+  color: var(--color-text-primary);
 }

@@ -1,6 +1,5 @@
 import { getProductById, getProducts } from "./api.js";
 const productsContainer = document.getElementById("products-container");
-const typeFilter = document.getElementById("type-filter");
 
 let allProducts = [];
 
@@ -26,22 +25,7 @@ const renderProducts = (data) => {
     .join("");
 };
 
-// Render products on page load
-document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    setFade("fade-in");
-    allProducts = await getProducts();
-    renderProducts(allProducts);
-  } catch (err) {
-    console.error("Failed to load products:", err);
-    productsContainer.textContent = `Failed to load products.`;
-  }
-});
-
-// ----Search----
-const searchInput = document.getElementById("search-input");
-const clearSearchButton = document.getElementById("clear-search-button");
-
+//toggle fade class, fade-in is visible, slowly appears; fade-out - slowly dissappears;
 const setFade = (state) => {
   if (!productsContainer.classList.contains(state)) {
     productsContainer.classList.remove("fade-in", "fade-out");
@@ -53,6 +37,7 @@ const fadeTimeout = 325;
 
 // render products/msg with a fade-in animation
 const fadeRender = (data, message) => {
+  //make the products fade-out
   setFade("fade-out");
 
   setTimeout(() => {
@@ -61,9 +46,25 @@ const fadeRender = (data, message) => {
     } else {
       renderProducts(data);
     }
-    setFade("fade-in");
+    setFade("fade-in"); //products fade-in
   }, fadeTimeout);
 };
+
+// Render products on page load
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    setFade("fade-in");
+    allProducts = await getProducts();
+    fadeRender(allProducts);
+  } catch (err) {
+    console.error("Failed to load products:", err);
+    productsContainer.textContent = `Failed to load products.`;
+  }
+});
+
+// ----Search Functionality----
+const searchInput = document.getElementById("search-input");
+const clearSearchButton = document.getElementById("clear-search-button");
 
 const searchProductByInput = (str) => {
   const formattedStr = str.trim().toLowerCase();
@@ -97,10 +98,15 @@ clearSearchButton.addEventListener("click", () => {
   fadeRender(allProducts);
 });
 
-//----Sort----//
+//----Sort Functionality----//
 const sortOption = document.getElementById("sort-option");
+const sortIndicator = document.getElementById("sort-indicator");
 
-let sortDirection = "ascending"; // ascending order of the sort by default
+// sorting direction state obj, ascending by def
+const state = {
+  sortBy: null,
+  sortDirection: "ascending",
+};
 
 const sortProducts = (optionValue, productsArr, direction = "ascending") => {
   if (optionValue === "all") return productsArr;
@@ -124,15 +130,37 @@ const sortProducts = (optionValue, productsArr, direction = "ascending") => {
   return sortedArr;
 };
 
-sortOption.addEventListener("change", (e) => {
-  const selectedValue = e.target.value;
+const updateSortIndicator = (direction) => {
+  if (direction === "ascending") {
+    sortIndicator.classList.remove("descending");
+    sortIndicator.classList.add("ascending");
+  } else {
+    sortIndicator.classList.remove("ascending");
+    sortIndicator.classList.add("descending");
+  }
+};
 
-  console.log(sortDirection);
-
+const renderSortedProducts = () => {
   const sortedProducts = sortProducts(
-    selectedValue,
+    state.sortBy,
     allProducts,
-    sortDirection
+    state.sortDirection
   );
-  renderProducts(sortedProducts);
+  fadeRender(sortedProducts);
+};
+
+sortIndicator.addEventListener("click", () => {
+  state.sortDirection =
+    state.sortDirection === "ascending" ? "descending" : "ascending";
+
+  updateSortIndicator(state.sortDirection);
+
+  console.log("indicator clicked");
+  state.sortBy = sortOption.value;
+  renderSortedProducts();
+});
+
+sortOption.addEventListener("change", (e) => {
+  state.sortBy = e.target.value;
+  renderSortedProducts();
 });
