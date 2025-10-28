@@ -19,6 +19,8 @@ const renderProducts = (data) => {
             <p class="product-color">Color: ${color}</p>
             <p class="product-frame">Frame: ${frame}</p>
             <p class="product-description">${description}</p>
+            <div class="view-container">
+            <a class="view-product-link"><p class="view-product">View >></p></a></div>
         </div>
         `
     )
@@ -95,6 +97,10 @@ searchInput.addEventListener("input", () => {
 
 clearSearchButton.addEventListener("click", () => {
   searchInput.value = "";
+  sortOption.value = "all";
+  state.sortBy = "null";
+  state.sortDirection = "ascending";
+  updateSortIndicator(state.sortDirection);
   fadeRender(allProducts);
 });
 
@@ -155,7 +161,6 @@ sortIndicator.addEventListener("click", () => {
 
   updateSortIndicator(state.sortDirection);
 
-  console.log("indicator clicked");
   state.sortBy = sortOption.value;
   renderSortedProducts();
 });

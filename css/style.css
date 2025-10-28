@@ -28,6 +28,12 @@
   --space-medium: 1rem;
   --space-big: 2rem;
   --space-extra-big: 4rem;
+
+  /*Animation Speeds*/
+  --quick-animation: 0.2s;
+  --fade-card-animation: 0.3s;
+  --regular-animation: 0.5s;
+  --long-animation: 1s;
 }
 
 html {
@@ -86,7 +92,7 @@ a:focus {
   text-align: center;
   width: 100px;
   padding-bottom: var(--space-small);
-  transition: all 0.2s ease-in-out;
+  transition: all var(--quick-animation) ease-in-out;
 }
 
 /*Animated bottom border for the nav item */
@@ -99,7 +105,7 @@ a:focus {
   left: 50%; /*start from the center horizontally*/
   transform: translateX(-50%);
   background-color: var(--color-text-secondary);
-  transition: width 0.2s ease-in-out;
+  transition: width var(--quick-animation) ease-in-out;
 }
 
 /*animation for hover and active states*/
@@ -165,7 +171,7 @@ a:focus {
 .footer-logo-link {
   text-decoration: none;
   color: var(--color-text-muted);
-  transition: all 0.2s ease-in-out;
+  transition: all var(--quick-animation) ease-in-out;
 }
 
 .social-link:hover,
@@ -187,7 +193,7 @@ a:focus {
 
 .footer-logo {
   filter: contrast(0%);
-  transition: all 0.2s ease-in-out;
+  transition: all var(--quick-animation) ease-in-out;
 }
 /*Footer styling*/
 
@@ -211,6 +217,7 @@ a:focus {
   transition: opacity 0.3s ease-in-out;
 }
 
+/*Change grid column template depending on the screen width */
 @media screen and (min-width: 1020px) {
   .products-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -242,7 +249,7 @@ a:focus {
   padding: var(--space-big);
   width: min(100%, 400px);
   height: 100%;
-  transition: all 0.2s ease-in-out;
+  transition: all var(--quick-animation) ease-in-out;
   border-radius: var(--space-extra-small);
   margin: 0 auto;
 }
@@ -250,7 +257,7 @@ a:focus {
 .product-card:hover {
   box-shadow: 1px 1px var(--space-big) var(--color-bg-secondary);
   transform: translateY(-0.2rem);
-  cursor: pointer;
+  cursor: default;
 }
 
 .product-image {
@@ -271,42 +278,150 @@ a:focus {
   font-style: italic;
 }
 
+.product-description {
+  height: 40%;
+}
+
+.view-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.view-product {
+  width: auto;
+  margin-top: var(--space-medium);
+  font-size: 1.1rem;
+  color: inherit;
+  transition: all 0.15s ease-in-out;
+  border-bottom: 1px solid transparent;
+}
+
+.view-product:hover {
+  transform: translateX(5px);
+  border-bottom: 1px solid var(--color-text-muted);
+  cursor: pointer;
+}
+
 /*fade animation for cards*/
 .fade-in {
   opacity: 1;
   transform: translateY(0);
-  transition: all 0.3s ease-in-out;
+  transition: all var(--fade-card-animation) ease-in-out;
 }
 
 .fade-out {
   opacity: 0;
   transform: translateY(10px);
-  transition: all 0.3s ease-in-out;
+  transition: all var(--fade-card-animation) ease-in-out;
 }
 
 /* Search-Filter-Sort Styles*/
+
+.search-filter-bar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: var(--space-small);
+}
 
 .no-results {
   font-size: inherit;
   padding: var(--space-big);
   color: var(--color-text-secondary);
 }
+
 /*Sort-styling*/
 .sort-wrapper {
   display: flex;
-  gap: var(--space-small);
   align-items: center;
-  text-align: center;
+  gap: var(--space-small);
+}
+
+select {
+  &,
+  &::picker(select) {
+    appearance: base-select;
+  }
 }
 
 .sort-label:hover {
-  cursor: pointer;
+  cursor: default;
+}
+
+.sort-option-select {
+  min-inline-size: 14ch;
+  font-family: inherit;
+  justify-content: space-between;
+  align-items: center;
+  background-color: inherit;
+  text-indent: var(--space-small);
+  border: 1px solid var(--color-border);
+  transition: border var(--quick-animation) ease-in-out;
+
+  &,
+  &::picker(select) {
+    background-color: inherit;
+    border-radius: 3px;
+    font-size: 0.9rem;
+  }
+
+  &::picker(select) {
+    margin-block-start: var(--space-small);
+    transition: all var(--quick-animation) ease-in-out;
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  &::picker-icon {
+    display: none;
+  }
+
+  &:open {
+    border: 1px solid var(--color-hover);
+  }
+
+  .picker {
+    transition: rotate var(--quick-animation) ease;
+
+    :open & {
+      rotate: 90deg;
+    }
+  }
+
+  selectedcontent > * {
+    transition: all var(--quick-animation) ease-in-out;
+    @starting-style {
+      opacity: 0;
+    }
+  }
+}
+
+.picker {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.sort-option-select::picker(select) {
+  border: 1px solid var(--color-border);
+}
+
+.sort-element {
+  font-size: 0.9rem;
+  border-radius: 3px;
+  padding: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+.sort-element:checked {
+  background-color: var(--color-bg-secondary);
 }
 
 .sort-indicator {
   font-size: 1.2rem;
   color: var(--color-text-muted);
-  transition: transform 0.25s ease-in-out, color 0.2s ease-in-out;
+  transition: transform 0.25s ease-in-out,
+    color var(--quick-animation) ease-in-out;
   display: inline-block;
 }
 
