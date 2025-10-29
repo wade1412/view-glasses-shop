@@ -1,4 +1,7 @@
 import { getProductById, getProducts } from "./api.js";
+import { cart } from "./cart/cart.js";
+import { renderCartItems } from "./cart/cartUI.js";
+
 const productsContainer = document.getElementById("products-container");
 
 let allProducts = [];
@@ -19,9 +22,10 @@ const renderProducts = (data) => {
             <p class="product-color">Color: ${color}</p>
             <p class="product-frame">Frame: ${frame}</p>
             <p class="product-description">${description}</p>
-            <div class="view-container">
-            <a class="view-product-link"><p class="view-product">View >></p></a></div>
-        </div>
+            <div class="cart-view-container">
+            <button class="add-to-cart-button" product-id="${id}">Add to cart</button>
+            <a class="view-product-link"><p class="view-product ">View</p></a></div>
+          </div>
         `
     )
     .join("");
@@ -168,4 +172,32 @@ sortIndicator.addEventListener("click", () => {
 sortOption.addEventListener("change", (e) => {
   state.sortBy = e.target.value;
   renderSortedProducts();
+});
+
+// Cart Functionality
+
+const showCartButton = document.getElementById("cart-header-button");
+const body = document.querySelector("body");
+const closeCartButton = document.getElementById("close-cart-button");
+
+showCartButton.addEventListener("click", () => {
+  body.classList.toggle("showCart");
+});
+
+closeCartButton.addEventListener("click", () => {
+  body.classList.toggle("showCart");
+});
+
+const addProductToCart = (buttonProductId, productsArr) => {
+  const found = productsArr.find((product) => product.id === buttonProductId);
+  cart.addItem(found);
+};
+
+productsContainer.addEventListener("click", (event) => {
+  let positionClick = event.target;
+  if (positionClick.classList.contains("add-to-cart-button")) {
+    const prodId = positionClick.getAttribute("product-id");
+    addProductToCart(prodId, allProducts);
+    renderCartItems();
+  }
 });
