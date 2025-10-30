@@ -67,7 +67,10 @@
     </main>
 
     <div class="cart-container" id="cart-container">
-      <h2 class="cart-header">Your cart</h2>
+      <div class="cart-header">
+        <h2 class="cart-name">Your cart</h2>
+        <button class="cart-button close" id="close-cart-button">X</button>
+      </div>
       <div class="cart-items-div" id="cart-items-div">
         <div class="cart-item">
           <div class="item-image">
@@ -84,10 +87,10 @@
       </div>
       <div class="total-div">
         <span>Total:</span>
-        <p id="cart-total-price"></p>
+        <p id="cart-total-price">$0</p>
       </div>
       <div class="cart-button-wrapper">
-        <button class="cart-button close" id="close-cart-button">Close</button>
+        <button class="cart-button clear" id="clear-cart-button">Clear</button>
         <button class="cart-button check-out">Check out</button>
       </div>
     </div>

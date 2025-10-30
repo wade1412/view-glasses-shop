@@ -179,6 +179,7 @@ sortOption.addEventListener("change", (e) => {
 const showCartButton = document.getElementById("cart-header-button");
 const body = document.querySelector("body");
 const closeCartButton = document.getElementById("close-cart-button");
+const clearCartButton = document.getElementById("clear-cart-button");
 
 showCartButton.addEventListener("click", () => {
   body.classList.toggle("showCart");
@@ -186,6 +187,11 @@ showCartButton.addEventListener("click", () => {
 
 closeCartButton.addEventListener("click", () => {
   body.classList.toggle("showCart");
+});
+
+clearCartButton.addEventListener("click", () => {
+  cart.items = [];
+  renderCartItems();
 });
 
 const addProductToCart = (buttonProductId, productsArr) => {
