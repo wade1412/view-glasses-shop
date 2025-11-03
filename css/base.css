@@ -40,7 +40,7 @@
 
   /*Font Sizes*/
   --search-section-font-size: 0.9rem;
-  --cart-items-font-size: 0.9rem;
+  --cart-items-font-size: clamp(0.85rem, 1.5vw, 1rem);
 }
 
 html {
@@ -56,6 +56,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  scrollbar-gutter: stable;
 }
 
 body {

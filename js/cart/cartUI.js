@@ -15,9 +15,10 @@ export const renderCartItems = () => {
           <div class="item-name">${item.name}</div>
           <div class="item-price">$${item.price}</div>
           <div class="item-quantity">
-            <span><</span>
+            <span class="qty" data-cart-item-id=${item.id} data-action="remove">-</span>
             <span>${item.quantity}</span>
-            <span>></span>
+            <span class="qty" data-cart-item-id=${item.id} data-action="add">+</span>
+          </div>
           </div>
         </div>
         `

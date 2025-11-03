@@ -8,6 +8,7 @@
 }
 
 .products-main {
+  min-height: 90dvh;
   max-width: 1200px;
   margin: 0 auto;
   padding-inline: var(--space-medium);

@@ -4,6 +4,7 @@ import { renderCartItems } from "./cart/cartUI.js";
 
 const productsContainer = document.getElementById("products-container");
 
+let rawResp = [];
 let allProducts = [];
 
 const renderProducts = (data) => {
@@ -62,7 +63,8 @@ const fadeRender = (data, message) => {
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     setFade("fade-in");
-    allProducts = await getProducts();
+    rawResp = await getProducts();
+    allProducts = rawResp.map((rawPr) => ({ ...rawPr, id: Number(rawPr.id) }));
     fadeRender(allProducts);
   } catch (err) {
     console.error("Failed to load products:", err);
@@ -180,6 +182,7 @@ sortOption.addEventListener("change", (e) => {
 
 const showCartButton = document.getElementById("cart-header-button");
 const body = document.querySelector("body");
+const cartContainer = document.getElementById("cart-container");
 const closeCartButton = document.getElementById("close-cart-button");
 const clearCartButton = document.getElementById("clear-cart-button");
 
@@ -196,13 +199,31 @@ clearCartButton.addEventListener("click", () => {
   renderCartItems();
 });
 
-const addProductToCart = (buttonProductId, productsArr) => {
-  const found = productsArr.find((product) => product.id === buttonProductId);
-  if (!found) {
-    console.warn("Product by this id wasnt found", buttonProductId);
+const addProductToCart = (addProductId, productsArr) => {
+  const foundProduct = productsArr.find(
+    (product) => product.id === addProductId
+  );
+  if (!foundProduct) {
+    console.warn("Product by this id wasnt found", addProductId);
     return;
   }
-  cart.addItem(found);
+  cart.addItem(foundProduct);
+};
+
+const changeProductQty = (itemProductId, qtyChange) => {
+  const foundItem = cart.items.find((item) => item.id === itemProductId);
+  if (!foundItem) {
+    console.warn("Item by this id wasnt found", itemProductId);
+    return;
+  }
+  if (qtyChange == "add") foundItem.quantity++;
+  if (qtyChange == "remove") {
+    foundItem.quantity--;
+    if (foundItem.quantity <= 0) {
+      const itemIndex = cart.items.indexOf(foundItem);
+      if (itemIndex > -1) cart.items.splice(itemIndex, 1);
+    }
+  }
 };
 
 productsContainer.addEventListener("click", (event) => {
@@ -210,6 +231,15 @@ productsContainer.addEventListener("click", (event) => {
   if (positionClick.classList.contains("add-to-cart-button")) {
     const prodId = Number(positionClick.getAttribute("data-product-id"));
     addProductToCart(prodId, allProducts);
+    renderCartItems();
+  }
+});
+
+cartContainer.addEventListener("click", (event) => {
+  let positionClick = event.target;
+  if (positionClick.classList.contains("qty")) {
+    const itemId = Number(positionClick.getAttribute("data-cart-item-id"));
+    changeProductQty(itemId, positionClick.getAttribute("data-action"));
     renderCartItems();
   }
 });
