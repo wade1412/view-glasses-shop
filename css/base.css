@@ -1,0 +1,64 @@
+@layer base;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  /*Colors for BG*/
+  --color-bg: #f6f6f6;
+  --color-bg-secondary: #efefef;
+  --color-surface: #ffffff;
+  /*Colors for text*/
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4c4c4c;
+  --color-text-muted: #888888;
+  /*Colors for other*/
+  --color-border: #d1d1d1;
+  --color-dark: #121212;
+  --color-accent: #1a1a1a;
+  --color-hover: #333333;
+
+  /*Spaces*/
+  --space-minimal: 0.1rem;
+  --space-extra-small: 0.25rem;
+  --space-small: 0.5rem;
+  --space-medium: 1rem;
+  --space-big: 2rem;
+  --space-extra-big: 4rem;
+  --space-search-section-padding: 4px;
+
+  /*Animation Speeds*/
+  --quick-animation: 0.2s;
+  --fade-card-animation: 0.3s;
+  --regular-animation: 0.5s;
+  --long-animation: 1s;
+
+  /*Font Sizes*/
+  --search-section-font-size: 0.9rem;
+  --cart-items-font-size: 0.9rem;
+}
+
+html {
+  font-family: Golos Text, sans-serif;
+  color: var(--color-text-primary);
+  font-size: clamp(14px, 2vh, 18px);
+  background-color: var(--color-surface);
+  height: 100%;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+}

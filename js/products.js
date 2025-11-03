@@ -15,7 +15,9 @@ const renderProducts = (data) => {
       ({ id, image, name, price, category, color, frame, description }) =>
         `
         <div class="product-card" id="${id}">
+            <div class="product-image-div">
             <img class="product-image" src="${image}" alt="${name} - ${color} ${frame}" loading="lazy"/>
+            </div>
             <h3 class="product-name">${name}</h3>
             <p class="product-price">$${price}</p>
             <p class="product-category">Category: ${category}</p>
@@ -23,8 +25,8 @@ const renderProducts = (data) => {
             <p class="product-frame">Frame: ${frame}</p>
             <p class="product-description">${description}</p>
             <div class="cart-view-container">
-            <button class="add-to-cart-button" product-id="${id}">Add to cart</button>
-            <a class="view-product-link"><p class="view-product ">View</p></a></div>
+            <button class="add-to-cart-button" data-product-id="${id}" type="button">Add to cart</button>
+            <a class="view-product-link" id="view-product-link"><p class="view-product ">View</p></a></div>
           </div>
         `
     )
@@ -102,7 +104,7 @@ searchInput.addEventListener("input", () => {
 clearSearchButton.addEventListener("click", () => {
   searchInput.value = "";
   sortOption.value = "all";
-  state.sortBy = "null";
+  state.sortBy = "all";
   state.sortDirection = "ascending";
   updateSortIndicator(state.sortDirection);
   fadeRender(allProducts);
@@ -196,13 +198,17 @@ clearCartButton.addEventListener("click", () => {
 
 const addProductToCart = (buttonProductId, productsArr) => {
   const found = productsArr.find((product) => product.id === buttonProductId);
+  if (!found) {
+    console.warn("Product by this id wasnt found", buttonProductId);
+    return;
+  }
   cart.addItem(found);
 };
 
 productsContainer.addEventListener("click", (event) => {
   let positionClick = event.target;
   if (positionClick.classList.contains("add-to-cart-button")) {
-    const prodId = positionClick.getAttribute("product-id");
+    const prodId = Number(positionClick.getAttribute("data-product-id"));
     addProductToCart(prodId, allProducts);
     renderCartItems();
   }

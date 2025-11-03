@@ -36,7 +36,7 @@
         <div class="sort-wrapper">
           <label for="sort-option" class="sort-label">Sort by:</label>
           <select id="sort-option" class="sort-option-select">
-            <button>
+            <button type="button">
               <selectedcontent></selectedcontent>
               <svg
                 viewBox="0 0 24 24"
@@ -57,7 +57,11 @@
 
         <div class="search-wrapper">
           <input id="search-input" type="text" placeholder="Search" />
-          <button id="clear-search-button" class="clear-search-button">
+          <button
+            id="clear-search-button"
+            class="clear-search-button"
+            type="button"
+          >
             Clear
           </button>
         </div>
@@ -69,7 +73,9 @@
     <div class="cart-container" id="cart-container">
       <div class="cart-header">
         <h2 class="cart-name">Your cart</h2>
-        <button class="cart-button close" id="close-cart-button">X</button>
+        <button class="cart-button close" id="close-cart-button" type="button">
+          X
+        </button>
       </div>
       <div class="cart-items-div" id="cart-items-div">
         <div class="cart-item">
@@ -90,8 +96,10 @@
         <p id="cart-total-price">$0</p>
       </div>
       <div class="cart-button-wrapper">
-        <button class="cart-button clear" id="clear-cart-button">Clear</button>
-        <button class="cart-button check-out">Check out</button>
+        <button class="cart-button clear" id="clear-cart-button" type="button">
+          Clear
+        </button>
+        <button class="cart-button check-out" type="button">Check out</button>
       </div>
     </div>
 
