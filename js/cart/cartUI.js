@@ -8,7 +8,7 @@ export const renderCartItems = () => {
   cartItemsDiv.innerHTML = cart.items
     .map(
       (item) => `
-        <div class="cart-item" id=${item.id}>
+        <div class="cart-item" data-cart-item-id=${item.id}>
           <div class="item-image">
             <img src="${item.image}" alt=${item.name} loading="lazy"/>
           </div>

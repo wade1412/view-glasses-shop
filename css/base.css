@@ -28,6 +28,7 @@
   --space-extra-small: 0.25rem;
   --space-small: 0.5rem;
   --space-medium: 1rem;
+  --space-medium-big: 1.5rem;
   --space-big: 2rem;
   --space-extra-big: 4rem;
   --space-search-section-padding: 4px;
@@ -40,7 +41,7 @@
 
   /*Font Sizes*/
   --search-section-font-size: 0.9rem;
-  --cart-items-font-size: clamp(0.85rem, 1.5vw, 1rem);
+  --cart-items-font-size: clamp(0.8rem, 1.3vw, 0.9rem);
 }
 
 html {
@@ -49,14 +50,13 @@ html {
   font-size: clamp(14px, 2vh, 18px);
   background-color: var(--color-surface);
   height: 100%;
-  overflow-x: hidden;
+  overflow-x: auto;
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
-  scrollbar-gutter: stable;
 }
 
 body {

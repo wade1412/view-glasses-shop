@@ -4,6 +4,7 @@
 
 body.showCart .cart-container {
   inset: 0 0 0 auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
 }
 
 body.showCart::before {
@@ -39,7 +40,7 @@ body.showCart .cart-container {
   border-radius: var(--space-search-section-padding);
   border: 1px solid var(--color-border);
   transform: translateX(100%);
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
 .cart-container .cart-header {
@@ -52,11 +53,11 @@ body.showCart .cart-container {
 }
 
 .cart-name {
-  font-size: 1.8rem;
+  font-size: calc(var(--cart-items-font-size) * 2);
 }
 
+/*Close Button*/
 .cart-container .cart-header .cart-button {
-  /*close button*/
   font-family: inherit;
   font-size: inherit;
   position: relative;
@@ -73,7 +74,9 @@ body.showCart .cart-container {
   background-color: var(--color-hover);
   width: 1.5rem;
   height: 1.5rem;
-  transition: box-shadow 0.2s linear, all var(--quick-animation) ease-in-out;
+  transition: box-shadow 0.2s ease, border var(--quick-animation) ease,
+    background-color var(--quick-animation) ease,
+    color var(--quick-animation) ease;
 
   &:hover {
     border: 1px solid var(--color-hover);
@@ -92,6 +95,24 @@ body.showCart .cart-container {
   max-height: 70%;
   overflow-y: auto;
   background-color: var(--color-surface);
+  scrollbar-gutter: stable;
+}
+
+@keyframes cartItemExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.cart-item--removing {
+  animation: cartItemExit 0.3s ease forwards;
 }
 
 .cart-container .cart-item {
@@ -144,7 +165,9 @@ body.showCart .cart-container {
   background-color: var(--color-hover);
   color: var(--color-surface);
   cursor: pointer;
-  transition: box-shadow 0.2s linear, all var(--quick-animation) ease-in-out;
+  transition: box-shadow 0.2s ease, border var(--quick-animation) ease,
+    background-color var(--quick-animation) ease,
+    color var(--quick-animation) ease;
 
   &:hover {
     border: 1px solid var(--color-hover);
@@ -208,7 +231,9 @@ body.showCart .cart-container {
   border: 1px solid var(--color-border);
   background-color: var(--color-hover);
   width: clamp(80px, 6rem, 140px);
-  transition: box-shadow 0.2s linear, all var(--quick-animation) ease-in-out;
+  transition: box-shadow 0.2s ease, border var(--quick-animation) ease,
+    background-color var(--quick-animation) ease,
+    color var(--quick-animation) ease;
 
   &:hover {
     border: 1px solid var(--color-hover);
@@ -226,5 +251,7 @@ body.showCart .cart-container {
   .cart-container {
     width: 100%;
     margin-right: 0;
+    height: 85dvh;
+    border-radius: 0;
   }
 }
