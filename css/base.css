@@ -51,6 +51,7 @@ html {
   background-color: var(--color-surface);
   height: 100%;
   overflow-x: auto;
+  scrollbar-gutter: stable;
 }
 
 html,

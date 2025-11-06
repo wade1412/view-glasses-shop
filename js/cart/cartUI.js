@@ -1,4 +1,5 @@
 import { cart } from "./cart.js";
+const cartItemCount = document.getElementById("cart-item-count");
 
 export const renderCartItems = () => {
   const cartItemsDiv = document.getElementById("cart-items-div");
@@ -28,4 +29,33 @@ export const renderCartItems = () => {
   document.getElementById(
     "cart-total-price"
   ).textContent = `$${cart.getTotal()}`;
+};
+
+const animateCartItemCount = () => {
+  cartItemCount.classList.remove("updated");
+  void cartItemCount.offsetWidth;
+  cartItemCount.classList.add("updated");
+
+  const onAnimationEnd = () => {
+    cartItemCount.classList.remove("updated");
+    cartItemCount.removeEventListener("animationend", onAnimationEnd);
+  };
+
+  cartItemCount.addEventListener("animationend", onAnimationEnd); //animation runs, only when the previous one finished
+};
+
+export const updateCartItemCount = (number) => {
+  animateCartItemCount();
+  cartItemCount.textContent = number;
+};
+
+export const addProductToCart = (addProductId, productsArr) => {
+  const foundProduct = productsArr.find(
+    (product) => product.id === addProductId
+  );
+  if (!foundProduct) {
+    console.warn("Product by this id wasnt found", addProductId);
+    return;
+  }
+  cart.addItem(foundProduct);
 };

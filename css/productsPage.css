@@ -285,51 +285,70 @@ select {
 }
 
 .add-to-cart-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 11ch;
+  min-width: 10ch;
   font-family: inherit;
   color: inherit;
-  font-size: 1rem;
+  font-size: 0.9rem;
   padding: var(--space-search-section-padding) 0;
   border: none;
-  border-bottom: 1px solid transparent;
+  border-radius: 6px;
   background-color: var(--color-surface);
-  font-size: 1rem;
   vertical-align: bottom;
   text-align: center;
+  transform: translateY(0) scale(1);
   transition: all var(--quick-animation) ease-in-out;
 }
 
 .view-product {
-  width: auto;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: inherit;
-  transition: all 0.15s ease-in-out;
-  border-bottom: 1px solid transparent;
+  min-width: 8ch;
   padding: var(--space-search-section-padding) 0;
+  transform: translateY(0) scale(1);
+  transition: transform var(--quick-animation) ease-in-out;
 }
 
 .add-to-cart-button:hover,
 .view-product:hover {
-  transform: translateX(4px);
-  border-bottom: 1px solid var(--color-text-muted);
+  transform: translateY(-2px) scale(1.03);
   cursor: pointer;
 }
 
-.add-to-cart-button::after,
-.view-product::after {
-  content: ">>";
-  color: inherit;
-  opacity: 0;
-  transition: all 0.25s ease-in-out;
-  position: absolute;
-  top: 50%;
-  font-size: 1rem;
-  right: -15px;
-  transform: translateY(-48%);
+.add-to-cart-button:active,
+.view-product:active {
+  transform: translateY(-1px) scale(0.96);
 }
 
-.add-to-cart-button:hover::after,
-.view-product:hover::after {
-  opacity: 1;
+.add-to-cart-button.added {
+  font-size: 0.9rem;
+  width: 11ch;
+  background-color: var(--color-hover);
+  color: var(--color-surface);
+  transition: none;
+  animation: cart-added 0.6s ease forwards;
+}
+
+@keyframes cart-added {
+  0% {
+    transform: translateY(-2px) scale(1.03);
+  }
+
+  20% {
+    transform: translateY(-3px) scale(1.1);
+  }
+
+  60% {
+    transform: translateY(0) scale(0.95);
+  }
+
+  100% {
+    transform: translateY(-2px) scale(1.03);
+  }
 }
 
 /*fade animation for cards*/
