@@ -1,6 +1,10 @@
 import { cart } from "./cart.js";
 import { renderCartItems, updateCartItemCount } from "./cartUI.js";
 
+cart.loadState(); //load the state from local storage
+renderCartItems(); //render items from cart state
+updateCartItemCount(cart.items.length, { animate: false }); //update the cart item count icon
+
 const showCartButton = document.getElementById("cart-header-button");
 const body = document.querySelector("body");
 const cartContainer = document.getElementById("cart-container");
@@ -24,6 +28,8 @@ const removeCartItem = (id) => {
     },
     { once: true }
   );
+
+  cart.saveState();
 };
 
 const changeProductQty = (itemProductId, qtyChange) => {
@@ -40,6 +46,8 @@ const changeProductQty = (itemProductId, qtyChange) => {
     }
     foundItem.quantity--;
   }
+
+  cart.saveState();
 };
 
 const clearCartItems = () => {
@@ -56,6 +64,7 @@ const clearCartItems = () => {
     "animationend",
     () => {
       cart.items = [];
+      cart.saveState();
       updateCartItemCount(0);
       renderCartItems();
     },
@@ -79,6 +88,8 @@ cartContainer.addEventListener("click", (event) => {
       updateCartItemCount(cart.items.length);
       renderCartItems();
     }
+
+    cart.saveState();
   }
 });
 

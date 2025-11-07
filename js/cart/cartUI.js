@@ -1,4 +1,7 @@
 import { cart } from "./cart.js";
+
+let cartCountInitialized = false;
+
 const cartItemCount = document.getElementById("cart-item-count");
 
 export const renderCartItems = () => {
@@ -32,6 +35,7 @@ export const renderCartItems = () => {
 };
 
 const animateCartItemCount = () => {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   cartItemCount.classList.remove("updated");
   void cartItemCount.offsetWidth;
   cartItemCount.classList.add("updated");
@@ -44,9 +48,19 @@ const animateCartItemCount = () => {
   cartItemCount.addEventListener("animationend", onAnimationEnd); //animation runs, only when the previous one finished
 };
 
-export const updateCartItemCount = (number) => {
-  animateCartItemCount();
+export const updateCartItemCount = (number, { animate = true } = {}) => {
+  if (!cartCountInitialized) {
+    cartItemCount.textContent = number;
+    cartCountInitialized = true;
+    document.body.classList.add("cart-ready");
+    return;
+  }
+
   cartItemCount.textContent = number;
+
+  if (animate) {
+    animateCartItemCount();
+  }
 };
 
 export const addProductToCart = (addProductId, productsArr) => {
