@@ -304,6 +304,10 @@ select {
   transition: all var(--quick-animation) ease-in-out;
 }
 
+.view-product-link {
+  all: unset;
+}
+
 .view-product {
   font-size: 0.9rem;
   color: inherit;

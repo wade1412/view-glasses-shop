@@ -22,7 +22,7 @@ const renderProducts = (data) => {
             <p class="product-description">${description}</p>
             <div class="cart-view-container">
             <button class="add-to-cart-button" data-product-id="${id}" type="button">Add to cart</button>
-            <a class="view-product-link" id="view-product-link"><p class="view-product ">View</p></a></div>
+            <a class="view-product-link" id="view-product-link" href="./productDetails.html?id=${id}"><p class="view-product ">View</p></a></div>
           </div>
         `
     )

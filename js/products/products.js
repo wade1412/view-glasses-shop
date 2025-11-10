@@ -1,12 +1,12 @@
 import { getProductById, getProducts } from "../api.js";
-import { productsContainer, fadeRender } from "./productUI.js";
+import { productsContainer, fadeRender } from "./productsUI.js";
 import { cart } from "../cart/cart.js";
 import {
   renderCartItems,
   addProductToCart,
   updateCartItemCount,
 } from "../cart/cartUI.js";
-import "./productFilters.js";
+import "./productsFilters.js";
 import "../cart/cartController.js";
 
 export let allProducts = [];

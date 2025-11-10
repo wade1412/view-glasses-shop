@@ -72,6 +72,15 @@ const clearCartItems = () => {
   );
 };
 
+const handleOutsideCartClick = (e) => {
+  const isClickInsideCart = cartContainer.contains(e.target);
+  const isCartButton = e.target.closest("#cart-header-button");
+  if (!isClickInsideCart && !isCartButton) {
+    body.classList.remove("showCart");
+    document.removeEventListener("click", handleOutsideCartClick);
+  }
+};
+
 //DOM listeners
 
 cartContainer.addEventListener("click", (event) => {
@@ -95,10 +104,12 @@ cartContainer.addEventListener("click", (event) => {
 
 showCartButton.addEventListener("click", () => {
   body.classList.toggle("showCart");
+  document.addEventListener("click", handleOutsideCartClick);
 });
 
 closeCartButton.addEventListener("click", () => {
   body.classList.toggle("showCart");
+  document.removeEventListener("click", handleOutsideCartClick);
 });
 
 clearCartButton.addEventListener("click", () => {

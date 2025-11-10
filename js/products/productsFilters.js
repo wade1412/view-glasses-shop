@@ -1,4 +1,4 @@
-import { fadeRender } from "./productUI.js";
+import { fadeRender } from "./productsUI.js";
 import { allProducts } from "./products.js";
 
 const searchInput = document.getElementById("search-input");
