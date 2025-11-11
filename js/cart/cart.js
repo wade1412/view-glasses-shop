@@ -13,6 +13,16 @@ export const cart = {
     this.saveState();
   },
 
+  addItemWithQty(product, qty) {
+    const existingProduct = this.items.find((item) => item.id === product.id);
+    if (existingProduct) {
+      existingProduct.quantity += qty;
+    } else {
+      this.items.push({ ...product, quantity: qty });
+    }
+    this.saveState();
+  },
+
   updateQuantity(id, qty) {
     const item = this.items.find((item) => item.id === id);
     if (item) item.quantity = qty;

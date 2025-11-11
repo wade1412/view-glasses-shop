@@ -75,7 +75,8 @@ const clearCartItems = () => {
 const handleOutsideCartClick = (e) => {
   const isClickInsideCart = cartContainer.contains(e.target);
   const isCartButton = e.target.closest("#cart-header-button");
-  if (!isClickInsideCart && !isCartButton) {
+  const isQtyButton = e.target.closest(".qty");
+  if (!isClickInsideCart && !isCartButton && !isQtyButton) {
     body.classList.remove("showCart");
     document.removeEventListener("click", handleOutsideCartClick);
   }
@@ -104,12 +105,16 @@ cartContainer.addEventListener("click", (event) => {
 
 showCartButton.addEventListener("click", () => {
   body.classList.toggle("showCart");
-  document.addEventListener("click", handleOutsideCartClick);
+  setTimeout(() => {
+    document.addEventListener("click", handleOutsideCartClick);
+  }, 0);
 });
 
 closeCartButton.addEventListener("click", () => {
   body.classList.toggle("showCart");
-  document.removeEventListener("click", handleOutsideCartClick);
+  setTimeout(() => {
+    document.addEventListener("click", handleOutsideCartClick);
+  }, 0);
 });
 
 clearCartButton.addEventListener("click", () => {

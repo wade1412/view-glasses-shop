@@ -17,7 +17,7 @@ body::before {
   background: rgba(0, 0, 0, 0.3);
   opacity: 0;
   transition: opacity 0.4s ease, backdrop-filter 0.4s ease;
-  z-index: 3;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -37,7 +37,6 @@ body.showCart::before {
   margin-top: calc(clamp(56px, 8vh, 100px) + var(--space-small));
   margin-right: var(--space-small);
   background-color: var(--color-surface);
-  backdrop-filter: blur(12px);
   position: fixed;
 
   font-size: var(--cart-items-font-size);
@@ -45,7 +44,7 @@ body.showCart::before {
   overscroll-behavior: contain;
   border-radius: 1rem;
   border: 1px solid var(--color-border);
-  transform: translateX(100%);
+  transform: translateX(110%);
   will-change: transform, opacity;
   transition: transform 0.4s ease, opacity 0.3s ease;
 }
