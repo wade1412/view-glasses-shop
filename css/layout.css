@@ -178,7 +178,8 @@ body.cart-ready .cart-item-count {
   align-items: center;
   bottom: 0;
   width: 100%;
-  padding-inline: clamp(0.5rem, 2vw, 2rem);
+  margin-top: 2rem;
+  padding: 1rem clamp(0.5rem, 2vw, 2rem);
   height: calc(clamp(56px, 8vh, 100px) + 1rem);
   color: var(--color-text-muted);
   font-size: var(--search-section-font-size);

@@ -26,8 +26,8 @@ const renderProductDetails = ({
     <div class="product-details-image">
         <img src="${image}" alt="${name} - ${color} ${frame}" loading="lazy"/>
     </div>
-    <div class="products-details-container">
-        <section class="product-details-sections">
+    <div class="product-details-container">
+        <section class="product-details-section">
             <h3 class="product-details-name">${name}</h3>
             <p class="product-details-price">$${price}</p>
             <p class="product-details-category">Category: ${category}</p>
@@ -52,10 +52,46 @@ const findProductAndRender = async () => {
   products = rawResp.map((rawPr) => ({ ...rawPr, id: Number(rawPr.id) }));
   const productId = Number(params.get("id"));
   const product = products.find((p) => p.id === productId);
+  if (!product) {
+    productDetailsMain.innerHTML = "<p>Product not found</p>";
+    return;
+  }
   renderProductDetails(product);
 };
 
 await findProductAndRender();
+
+const renderRelatedProducts = () => {
+  const prodId = Number(params.get("id"));
+  const foundProduct = products.find((prod) => prod.id === prodId);
+  let related = products
+    .filter(
+      (prod) => prod.category === foundProduct.category && prod.id !== prodId
+    )
+    .sort(() => Math.random() - 0.5)
+    .splice(0, 4);
+
+  const section = document.getElementById("related-products-section");
+
+  section.innerHTML = `
+  <h3>You might also  like</h3>
+  <div class="related-grid">
+    ${related
+      .map(
+        (product) => `
+        <a class="related-card" href="./productDetails.html?id=${product.id}">
+          <img src="${product.image}" />
+          <p>${product.name}</p>
+          <span>$${product.price}</span>
+        </a>
+        `
+      )
+      .join("")}
+  </div>
+  `;
+};
+
+renderRelatedProducts();
 
 const addProductQtyToCart = (prodId, prodQty, prodArr) => {
   const foundProduct = prodArr.find((prod) => prod.id === prodId);
@@ -89,6 +125,19 @@ const updateQty = (target) => {
   const qtyAction = target.dataset.action;
   if (qtyAction === "add") qtyNumber++;
   if (qtyAction === "remove" && qtyNumber > 1) qtyNumber--;
+
+  productQtyElement.classList.remove("quantity-change");
+  void productQtyElement.offsetWidth;
+  productQtyElement.classList.add("quantity-change");
+
+  productQtyElement.addEventListener(
+    "animationend",
+    () => {
+      productQtyElement.classList.remove("quantity-change");
+    },
+    { once: true }
+  );
+
   productQtyElement.textContent = qtyNumber;
 };
 
