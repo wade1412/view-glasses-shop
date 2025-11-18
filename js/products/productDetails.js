@@ -8,7 +8,11 @@ import {
 } from "../cart/cartUI.js";
 
 const params = new URLSearchParams(window.location.search);
+const currentProdId = Number(params.get("id"));
 const productDetailsMain = document.getElementById("product-details-main");
+const relatedProductsSection = document.getElementById(
+  "related-products-section"
+);
 
 let products = [];
 
@@ -50,8 +54,7 @@ const renderProductDetails = ({
 const findProductAndRender = async () => {
   let rawResp = await getProducts();
   products = rawResp.map((rawPr) => ({ ...rawPr, id: Number(rawPr.id) }));
-  const productId = Number(params.get("id"));
-  const product = products.find((p) => p.id === productId);
+  const product = products.find((p) => p.id === currentProdId);
   if (!product) {
     productDetailsMain.innerHTML = "<p>Product not found</p>";
     return;
@@ -59,30 +62,29 @@ const findProductAndRender = async () => {
   renderProductDetails(product);
 };
 
-await findProductAndRender();
-
 const renderRelatedProducts = () => {
-  const prodId = Number(params.get("id"));
-  const foundProduct = products.find((prod) => prod.id === prodId);
+  const foundProduct = products.find((prod) => prod.id === currentProdId);
   let related = products
     .filter(
-      (prod) => prod.category === foundProduct.category && prod.id !== prodId
+      (prod) =>
+        prod.category === foundProduct.category && prod.id !== currentProdId
     )
-    .sort(() => Math.random() - 0.5)
-    .splice(0, 4);
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 4);
 
-  const section = document.getElementById("related-products-section");
-
-  section.innerHTML = `
+  relatedProductsSection.innerHTML = `
   <h3>You might also  like</h3>
   <div class="related-grid">
     ${related
       .map(
         (product) => `
-        <a class="related-card" href="./productDetails.html?id=${product.id}">
-          <img src="${product.image}" />
-          <p>${product.name}</p>
-          <span>$${product.price}</span>
+        <a class="related-card-wrapper" href="./productDetails.html?id=${product.id}">
+          <div class="related-card">
+            <div class="related-card-img-container">
+            <img src="${product.image}" /></div>
+            <p>${product.name}</p>
+            <span>$${product.price}</span>
+          </div>
         </a>
         `
       )
@@ -91,7 +93,13 @@ const renderRelatedProducts = () => {
   `;
 };
 
+await findProductAndRender();
+requestAnimationFrame(() => {
+  animateFadeIn(productDetailsMain, 50);
+  animateFadeIn(relatedProductsSection, 150);
+});
 renderRelatedProducts();
+requestAnimationFrame(() => observeCards());
 
 const addProductQtyToCart = (prodId, prodQty, prodArr) => {
   const foundProduct = prodArr.find((prod) => prod.id === prodId);
@@ -141,6 +149,10 @@ const updateQty = (target) => {
   productQtyElement.textContent = qtyNumber;
 };
 
+const animateFadeIn = (element, timeout = 0) => {
+  setTimeout(() => element.classList.add("slide-in"), timeout);
+};
+
 productDetailsMain.addEventListener("click", (e) => {
   const target = e.target;
   if (target.classList.contains("product-details-add-to-cart-button")) {
@@ -150,3 +162,27 @@ productDetailsMain.addEventListener("click", (e) => {
     updateQty(target);
   }
 });
+
+const observeCards = () => {
+  const cards = document.querySelectorAll(".related-card-wrapper");
+  if (!cards || cards.length === 0) {
+    console.warn("observeCards: no cards found");
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target); // animate only once
+        }
+      });
+    },
+    {
+      threshold: 0.4,
+    }
+  );
+
+  cards.forEach((card) => observer.observe(card));
+};
