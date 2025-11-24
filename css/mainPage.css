@@ -1,0 +1,126 @@
+@layer mainPage;
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 40dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--color-surface);
+
+  &:hover .hero-image {
+    transform: scale(1.05);
+  }
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
+  z-index: 1;
+}
+
+.hero-image {
+  position: absolute;
+  background-image: url("../resources/main-page-pictures/background-hero.jfif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  inset: 0;
+  filter: contrast(50%);
+  transform: scale(1);
+  transition: transform 4s ease;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: inherit;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: center;
+
+  &:hover .hero-image {
+    transform: scale(1.05);
+  }
+}
+
+.hero-text {
+  display: flex;
+  text-align: center;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  align-items: center;
+
+  &:hover h1::after {
+    width: clamp(90%, 95%, 100%);
+    opacity: 1;
+  }
+}
+
+.hero-text h1 {
+  font-size: var(--text-xl);
+}
+
+.hero-text h1::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  opacity: 0;
+  height: 1px;
+  bottom: 0;
+  left: 50%;
+  margin: 4.5rem 0;
+  transform: translateX(-50%);
+  border-radius: 10rem;
+  background-color: var(--color-surface);
+  transition: width 0.5s ease-in-out, opacity 0.6s ease-in-out;
+}
+
+.hero-text p,
+.hero-button {
+  font-size: var(--text-sm);
+}
+
+.hero-button {
+  margin-top: var(--space-md);
+  min-width: 12ch;
+  font-family: inherit;
+  color: var(--color-text-primary);
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--space-search-section-pd-rad);
+  background-color: var(--color-surface);
+  transform: translateY(0) scale(1);
+  transition: transform var(--quick-animation) ease,
+    background-color var(--quick-animation) ease,
+    color var(--quick-animation) ease;
+  width: max-content;
+
+  &:hover {
+    transform: translateY(-2px) scale(1.03);
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: translateY(-1px) scale(0.96);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-content h1 {
+    font-size: var(--text-xxl);
+  }
+  .hero-content p,
+  .hero-button {
+    font-size: var(--text-base);
+  }
+}
