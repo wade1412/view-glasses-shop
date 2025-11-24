@@ -2,12 +2,14 @@
 
 .header {
   display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
+  padding-block: var(--space-sm);
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   position: sticky;
   width: 100%;
-  height: clamp(56px, 8vh, 100px);
-  padding-inline: clamp(0.5rem, 2vw, 2rem);
+  height: 100px;
   top: 0;
   z-index: 99;
   background-color: var(--color-surface);
@@ -17,13 +19,13 @@
 .logo {
   width: clamp(50px, 6vw, 80px);
   height: auto;
-  margin: 0 var(--space-big);
+  margin: 0 var(--space-sm);
 }
 
 .nav-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(var(--space-small), 2vw, var(--space-medium-big));
+  gap: clamp(var(--space-xs), 2vw, var(--space-xl));
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -44,10 +46,9 @@ a:focus {
   justify-content: center;
   min-width: clamp(70px, 18vw, 100px);
   color: inherit;
-  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  font-size: clamp(var(--text-sm), 1.5vw, var(--text-md));
   font-weight: 500;
   text-align: center;
-  width: 100px;
   transition: all var(--quick-animation) ease-in-out;
 
   &:hover {
@@ -167,8 +168,8 @@ body.cart-ready .cart-item-count {
 
 .intro {
   text-align: center;
-  margin-top: var(--space-big);
-  font-size: var(--space-big);
+  margin-top: var(--space-xl);
+  font-size: var(--space-xl);
 }
 
 /*Footer styling*/
@@ -190,8 +191,8 @@ body.cart-ready .cart-item-count {
 .social-icons {
   display: flex;
   justify-content: space-around;
-  padding: var(--space-extra-small);
-  gap: var(--space-big);
+  padding: var(--space-xxs);
+  gap: var(--space-xl);
 }
 
 .fab {
@@ -244,3 +245,17 @@ body.cart-ready .cart-item-count {
 }
 
 /*Footer styling*/
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-inline: clamp(0.5rem, 2vw, 2rem);
+  }
+
+  .logo {
+    margin: 0 var(--space-xl);
+  }
+}

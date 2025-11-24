@@ -21,11 +21,11 @@ const searchProductByInput = (str) => {
   fadeRender(searchResult);
 };
 
-let debounce = 250;
+let debounceTimeout = 250;
 
 searchInput.addEventListener("input", () => {
-  clearTimeout(debounce);
-  debounce = setTimeout(() => {
+  clearTimeout(debounceTimeout);
+  debounceTimeout = setTimeout(() => {
     let inpVal = searchInput.value;
     searchProductByInput(inpVal);
   }, 250);

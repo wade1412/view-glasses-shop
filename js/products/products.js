@@ -22,20 +22,37 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-productsContainer.addEventListener("click", (event) => {
-  let positionClick = event.target;
-  if (!positionClick.classList.contains("add-to-cart-button")) return;
+const viewProductWithAnimation = (target) => {
+  target.classList.add("added");
+  setTimeout(() => {
+    target.classList.remove("added");
+  }, 700);
+};
 
-  const prodId = Number(positionClick.getAttribute("data-product-id"));
+const addToCartWithAnimation = (target) => {
+  const prodId = Number(target.getAttribute("data-product-id"));
   addProductToCart(prodId, allProducts);
   updateCartItemCount(cart.items.length);
   renderCartItems();
 
-  positionClick.classList.add("added");
-  positionClick.textContent = "Added!";
+  target.classList.add("added");
+  target.textContent = "Added!";
 
   setTimeout(() => {
-    positionClick.classList.remove("added");
-    positionClick.textContent = "Add to cart";
+    target.classList.remove("added");
+    target.textContent = "Add to cart";
   }, 700);
+};
+
+productsContainer.addEventListener("click", (event) => {
+  let positionClick = event.target;
+
+  if (positionClick.classList.contains("add-to-cart-button")) {
+    addToCartWithAnimation(positionClick);
+  }
+  if (positionClick.classList.contains("view-product")) {
+    viewProductWithAnimation(positionClick);
+  }
+
+  return;
 });

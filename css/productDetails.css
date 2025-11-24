@@ -9,9 +9,9 @@
 .product-details-main {
   display: flex;
   width: 100%;
-  margin: var(--space-big) auto;
-  padding: var(--space-big) var(--space-medium);
-  gap: var(--space-big);
+  margin: var(--space-xl) auto;
+  padding: var(--space-xl) var(--space-md);
+  gap: var(--space-xl);
   align-items: center;
   justify-content: center;
   min-height: 60dvh;
@@ -51,7 +51,7 @@
   width: 100%;
   max-height: 25rem;
   object-fit: contain;
-  border-radius: var(--space-medium);
+  border-radius: var(--space-md);
   transition: transform 0.3s ease;
 
   &:hover {
@@ -63,8 +63,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding-inline: var(--space-medium);
-  gap: var(--space-medium);
+  padding-inline: var(--space-md);
+  gap: var(--space-md);
 }
 
 .product-details-section {
@@ -72,7 +72,7 @@
   flex-direction: column;
   justify-content: flex-start;
   font-size: 1rem;
-  padding: var(--space-small);
+  padding: var(--space-xs);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -81,7 +81,7 @@
 }
 
 .product-details-price {
-  margin: var(--space-medium) 0;
+  margin: var(--space-md) 0;
   font-style: italic;
 }
 
@@ -94,7 +94,7 @@
 
 .product-details-description {
   font-size: 1rem;
-  margin: var(--space-medium) 0;
+  margin: var(--space-md) 0;
   color: var(--color-text-secondary);
 }
 
@@ -102,7 +102,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: var(--space-medium);
+  margin-top: var(--space-md);
   gap: 2rem;
 }
 
@@ -234,13 +234,13 @@
 .related-products-section {
   width: 100%;
   max-width: 1200px;
-  padding: var(--space-big);
-  margin: var(--space-big) auto;
+  padding: var(--space-xl);
+  margin: var(--space-xl) auto;
 }
 
 .related-products-section h3 {
   font-size: 1.4rem;
-  margin-bottom: var(--space-medium);
+  margin-bottom: var(--space-md);
   position: relative;
 }
 
@@ -292,11 +292,11 @@
 .related-card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-small);
+  gap: var(--space-xs);
   color: inherit;
-  padding: var(--space-medium);
-  padding-bottom: var(--space-medium-big);
-  border-radius: var(--space-small);
+  padding: var(--space-md);
+  padding-bottom: var(--space-lg);
+  border-radius: var(--space-xs);
   transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 
   &:hover {
@@ -349,6 +349,6 @@
   }
 
   .related-products-section {
-    padding: var(--space-medium);
+    padding: var(--space-md);
   }
 }
