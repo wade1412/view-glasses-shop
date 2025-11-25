@@ -1,9 +1,15 @@
 @layer mainPage;
 
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .hero {
   position: relative;
   width: 100%;
-  height: 40dvh;
+  height: 60dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,12 +31,12 @@
 
 .hero-image {
   position: absolute;
-  background-image: url("../resources/main-page-pictures/background-hero.jfif");
+  background-image: url("../resources/main-page-pictures/background-hero.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   inset: 0;
-  filter: contrast(50%);
+  filter: contrast(80%);
   transform: scale(1);
   transition: transform 4s ease;
 }
@@ -51,7 +57,7 @@
   }
 }
 
-.hero-text {
+.hero-text-link {
   display: flex;
   text-align: center;
   color: inherit;
@@ -66,11 +72,11 @@
   }
 }
 
-.hero-text h1 {
+.hero-text-link h1 {
   font-size: var(--text-xl);
 }
 
-.hero-text h1::after {
+.hero-text-link h1::after {
   content: "";
   position: absolute;
   width: 0;
@@ -100,9 +106,7 @@
   border-radius: var(--space-search-section-pd-rad);
   background-color: var(--color-surface);
   transform: translateY(0) scale(1);
-  transition: transform var(--quick-animation) ease,
-    background-color var(--quick-animation) ease,
-    color var(--quick-animation) ease;
+  transition: transform 0.35s ease-in-out;
   width: max-content;
 
   &:hover {
@@ -115,6 +119,135 @@
   }
 }
 
+.feature-section,
+.finish-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 60dvh;
+  height: auto;
+  padding: var(--space-md);
+  align-items: center;
+  justify-content: center;
+}
+
+.finish-section {
+  justify-content: center;
+}
+
+.feature-image {
+  margin: var(--space-md) 0;
+  height: 100%;
+}
+
+.feature-content,
+.finish-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.finish-content {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.feature-content h1,
+.finish-content h1 {
+  font-size: var(--text-xl);
+  margin: var(--space-xs) 0;
+}
+
+.feature-content p,
+.finish-content p {
+  font-size: var(--text-sm);
+}
+
+.italic {
+  font-style: italic;
+}
+
+.frames-section {
+  background-color: var(--color-text-primary);
+  color: var(--color-surface);
+}
+
+.grid {
+  display: grid;
+  max-height: 25rem;
+  height: 100%;
+  gap: var(--space-xs);
+}
+
+.grid > div {
+  overflow: hidden;
+  display: flex;
+  border-radius: var(--space-xxs);
+}
+
+.grid img {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  transition: transform 0.6s ease;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+.top-crop {
+  object-position: center top;
+}
+
+.right-crop {
+  object-position: 70% center;
+}
+
+.left-crop {
+  object-position: 30% center;
+}
+
+.lenses-gr {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "box-1 box-1 box-2 box-3"
+    "box-1 box-1 box-4 box-4";
+}
+
+.lenses-gr > div {
+  transition: box-shadow 0.6s ease;
+  &:hover {
+    box-shadow: 0px 0px 5px rgba(43, 43, 47, 0.77);
+  }
+}
+
+.frames-gr {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "box-4 box-2 box-1 "
+    "box-4 box-3 box-3";
+}
+
+.frames-gr > div,
+.finish-gr > div {
+  transition: box-shadow 0.6s ease;
+  &:hover {
+    box-shadow: 0px 0px 5px rgba(157, 157, 174, 0.532);
+  }
+}
+
+.finish-gr {
+  height: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 20rem;
+  grid-template-areas: "box-1 box-2 box-3 ";
+}
+
 @media (min-width: 768px) {
   .hero-content h1 {
     font-size: var(--text-xxl);
@@ -122,5 +255,39 @@
   .hero-content p,
   .hero-button {
     font-size: var(--text-base);
+  }
+
+  .feature-section {
+    flex-direction: row;
+    gap: var(--space-md);
+    justify-content: space-around;
+  }
+
+  .feature-image {
+    flex: 3;
+    margin: 0;
+    max-width: 65%;
+  }
+
+  .feature-content {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+    flex: 1;
+    margin-bottom: 0;
+    max-width: 20%;
+  }
+
+  .grid {
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+  }
+
+  .finish-content {
+    flex: 1;
+    max-width: 40%;
+  }
+  .finish-gr {
+    flex: 3;
+    max-width: 55%;
   }
 }

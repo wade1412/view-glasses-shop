@@ -159,13 +159,6 @@ body.cart-ready .cart-item-count {
 
 /*Header styling*/
 
-.main-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 5rem;
-}
-
 .intro {
   text-align: center;
   margin-top: var(--space-xl);
