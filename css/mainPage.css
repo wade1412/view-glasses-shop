@@ -1,24 +1,14 @@
 @layer mainPage;
 
 :root {
+  --section-padding: clamp(0.9rem, 1.5vh, 2rem);
+  --section-content-padding: clamp(0.75rem, 1vh, 1.5rem);
+  --grid-div-hover-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+
+  /*Text Sizes For Responsiveness*/
   --h1: clamp(1.8rem, 3vw, 2.8rem);
   --p: clamp(0.95rem, 1.2vw, 1.25rem);
   --button: clamp(1.1rem, 1.35vw, 1.4rem);
-  --section-padding: clamp(3rem, 6vh, 5rem);
-  --reveal-offset: clamp(1rem, 2vh, 2rem);
-  --grid-div-hover-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
-}
-
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(var(--reveal-offset));
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  will-change: opacity, transform;
-}
-
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .main-container {
@@ -116,7 +106,7 @@
 
 .hero-text-link h1,
 .hero-text-link p {
-  max-width: 60ch;
+  max-width: min(80%, 60ch);
 }
 
 .hero-text-link h1 {
@@ -168,9 +158,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 45dvh;
+  min-height: clamp(45dvh, 50dvh, 55dvh);
   height: auto;
-  padding-block: var(--section-padding);
+  padding: var(--section-padding);
   align-items: center;
   justify-content: center;
 }
@@ -183,7 +173,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  padding: var(--space-sm);
+  padding: var(--section-content-padding);
 }
 
 .section__content p,
@@ -197,7 +187,7 @@
 
 .section__media {
   height: 100%;
-  padding: var(--space-sm);
+  padding: var(--section-content-padding);
 }
 
 .finish-content {
@@ -211,6 +201,7 @@
 }
 
 .section--frames {
+  flex-direction: column-reverse;
   background-color: var(--color-text-primary);
   color: var(--color-surface);
 }
@@ -341,16 +332,14 @@
   }
 
   .section__media {
-    padding: var(--space-lg);
     margin: 0;
     max-width: 65%;
   }
 
   .section__content {
-    padding: var(--space-md);
     gap: var(--space-sm);
     margin-bottom: 0;
-    max-width: 40%;
+    max-width: 35%;
   }
 
   .section__content p,
@@ -366,17 +355,7 @@
     gap: var(--space-sm);
   }
 
-  .content--frames {
-    margin-left: var(--space-md);
-  }
-
   .finish-content {
     max-width: 80%;
-  }
-}
-
-@media (min-width: 1920px) {
-  .grid {
-    min-height: 35rem;
   }
 }

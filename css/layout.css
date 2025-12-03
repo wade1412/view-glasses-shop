@@ -1,5 +1,25 @@
 @layer layout;
 
+:root {
+  --reveal-distance: clamp(0.8rem, 1.5vh, 1.5rem);
+  --reveal-duration: 0.8s;
+  --reveal-stagger-step: 0.05s;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition: opacity var(--reveal-duration) ease,
+    transform var(--reveal-duration) ease;
+  transition-delay: calc(var(--reveal-order, 0) * var(--reveal-stagger-step));
+  will-change: opacity, transform;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .header {
   display: flex;
   flex-direction: column;
@@ -14,6 +34,16 @@
   z-index: 99;
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
+}
+
+.header.reveal,
+.hero.reveal {
+  transform: none;
+}
+
+.header.reveal--visible,
+.hero.reveal--visible {
+  transform: none;
 }
 
 .logo {

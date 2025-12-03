@@ -8,6 +8,17 @@
   margin: 0;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 :root {
   /*Colors for BG*/
   --color-bg: #f6f6f6;
@@ -31,7 +42,6 @@
   --space-lg: 1.5rem;
   --space-xl: 2rem;
   --space-xxl: 3rem;
-  --space-search-section-pd-rad: 6px;
 
   /*Animation Speeds*/
   --quick-animation: 0.2s;
@@ -46,7 +56,6 @@
   --text-lg: 1.25rem;
   --text-xl: 1.5rem;
   --text-xxl: 2rem;
-  --search-section-font-size: 0.9rem;
   --cart-items-font-size: clamp(0.8rem, 1.3vw, 0.9rem);
 }
 

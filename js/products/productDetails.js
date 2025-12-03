@@ -1,11 +1,10 @@
 import { getProducts } from "../api.js";
+import { revealOnPageLoad } from "../animations.js";
 import "../cart/cartController.js";
 import { cart } from "../cart/cart.js";
-import {
-  renderCartItems,
-  addProductToCart,
-  updateCartItemCount,
-} from "../cart/cartUI.js";
+import { renderCartItems, updateCartItemCount } from "../cart/cartUI.js";
+
+document.addEventListener("DOMContentLoaded", revealOnPageLoad);
 
 const params = new URLSearchParams(window.location.search);
 const currentProdId = Number(params.get("id"));

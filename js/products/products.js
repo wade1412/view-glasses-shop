@@ -1,4 +1,4 @@
-import { getProductById, getProducts } from "../api.js";
+import { getProducts } from "../api.js";
 import { productsContainer, fadeRender } from "./productsUI.js";
 import { cart } from "../cart/cart.js";
 import {
@@ -8,6 +8,7 @@ import {
 } from "../cart/cartUI.js";
 import "./productsFilters.js";
 import "../cart/cartController.js";
+import "../animations.js";
 
 export let allProducts = [];
 
@@ -19,6 +20,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     fadeRender(allProducts);
   } catch (err) {
     console.error("Failed to load products:", err);
+    productsContainer.innerHTML = `
+      <p class="no-results">We couldn't load products. Please try again later</p>
+    `;
   }
 });
 
@@ -29,18 +33,25 @@ const viewProductWithAnimation = (target) => {
   }, 700);
 };
 
-const addToCartWithAnimation = (target) => {
-  const prodId = Number(target.getAttribute("data-product-id"));
+const addToCartWithAnimation = (button) => {
+  const prodId = Number(button.getAttribute("data-product-id"));
+  if (!prodId) return;
+
+  button.disabled = true;
+
   addProductToCart(prodId, allProducts);
   updateCartItemCount(cart.items.length);
   renderCartItems();
 
-  target.classList.add("added");
-  target.textContent = "Added!";
+  const defaultLabel = button.dataset.defaultLabel || "Add to cart";
+
+  button.classList.add("added");
+  button.textContent = "Added!";
 
   setTimeout(() => {
-    target.classList.remove("added");
-    target.textContent = "Add to cart";
+    button.classList.remove("added");
+    button.textContent = defaultLabel;
+    button.disabled = false;
   }, 700);
 };
 

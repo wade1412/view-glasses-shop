@@ -12,17 +12,35 @@ const renderProducts = (data) => {
         `
         <div class="product-card" id="${id}">
             <div class="product-image-div">
-            <img class="product-image" src="${image}" alt="${name} - ${color} ${frame}" loading="lazy"/>
+              <img class="product-image" 
+              src="${image}" 
+              alt="${name} - ${color} ${frame}" 
+              loading="lazy"
+              />
             </div>
-            <h3 class="product-name">${name}</h3>
-            <p class="product-price">$${price}</p>
-            <p class="product-category">Category: ${category}</p>
-            <p class="product-color">Color: ${color}</p>
-            <p class="product-frame">Frame: ${frame}</p>
-            <p class="product-description">${description}</p>
+            <div class="product-info">
+              <h3 class="product-name">${name}</h3>
+              <p class="product-price">$${price}</p>
+              <div class="product-types">
+                <p class="product-category">Category: ${category}</p>
+                <p class="product-color">Color: ${color}</p>
+                <p class="product-frame">Frame: ${frame}</p>
+              </div>
+              <p class="product-description">${description}</p>
+            </div>
             <div class="cart-view-container">
-            <button class="add-to-cart-button" data-product-id="${id}" type="button">Add to cart</button>
-            <a class="view-product-link" id="view-product-link" href="./productDetails.html?id=${id}"><p class="view-product ">View</p></a></div>
+              <button 
+                class="add-to-cart-button" 
+                data-product-id="${id}" 
+                type="button"
+                data-default-label="Add to cart"
+                >
+                  Add to cart 
+              </button>
+              <a class="view-product-link" id="view-product-link" href="./productDetails.html?id=${id}">
+                <p class="view-product ">View</p>
+              </a>
+            </div>
           </div>
         `
     )
@@ -37,7 +55,7 @@ const setFade = (state) => {
   }
 };
 
-const fadeTimeout = 325;
+const fadeTimeout = 345;
 
 // render products/msg with a fade-in animation
 const fadeRender = (data, message) => {
