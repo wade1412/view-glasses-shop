@@ -2,15 +2,16 @@
 
 :root {
   --reveal-distance: clamp(0.8rem, 1.5vh, 1.5rem);
-  --reveal-duration: 0.8s;
+  --reveal-duration: 0.85s;
   --reveal-stagger-step: 0.05s;
+  --header-height: 110px;
 }
 
 .reveal {
   opacity: 0;
   transform: translateY(var(--reveal-distance));
-  transition: opacity var(--reveal-duration) ease,
-    transform var(--reveal-duration) ease;
+  transition: opacity var(--reveal-duration) ease-in-out,
+    transform var(--reveal-duration) ease-in-out;
   transition-delay: calc(var(--reveal-order, 0) * var(--reveal-stagger-step));
   will-change: opacity, transform;
 }
@@ -29,7 +30,7 @@
   justify-content: space-around;
   position: sticky;
   width: 100%;
-  height: 100px;
+  height: var(--header-height);
   top: 0;
   z-index: 99;
   background-color: var(--color-surface);
@@ -202,7 +203,7 @@ body.cart-ready .cart-item-count {
   align-items: center;
   bottom: 0;
   width: 100%;
-  padding: 1rem clamp(0.5rem, 2vw, 2rem);
+  padding: var(--space-md) clamp(var(--space-sm), 2vw, 2rem);
   height: calc(clamp(56px, 8vh, 100px) + 1rem);
   color: var(--color-text-muted);
   font-size: var(--search-section-font-size);

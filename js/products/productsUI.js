@@ -2,14 +2,22 @@ export { fadeRender };
 
 export const productsContainer = document.getElementById("products-container");
 
-const renderProducts = (data) => {
-  productsContainer.innerHTML = ``;
+if (!productsContainer) {
+  console.error("productsContainer not found in DOM");
+}
 
-  // Render each product
-  productsContainer.innerHTML = data
-    .map(
-      ({ id, image, name, price, category, color, frame, description }) =>
-        `
+/*Product card template*/
+const productCardHTML = ({
+  id,
+  image,
+  name,
+  price,
+  category,
+  color,
+  frame,
+  description,
+}) =>
+  `
         <div class="product-card" id="${id}">
             <div class="product-image-div">
               <img class="product-image" 
@@ -42,32 +50,33 @@ const renderProducts = (data) => {
               </a>
             </div>
           </div>
-        `
-    )
-    .join("");
+        `;
+/*Render functions*/
+const renderProducts = (data) => {
+  return data.map(productCardHTML).join("");
 };
+
+const renderMessage = (message) => `<p class="no-results">${message}</p>`;
+const FADE_DURATION_MS = 325; //must match CSS .product-grid fade transition
 
 //toggle fade class, fade-in is visible, slowly appears; fade-out - slowly dissappears;
 const setFade = (state) => {
-  if (!productsContainer.classList.contains(state)) {
-    productsContainer.classList.remove("fade-in", "fade-out");
-    productsContainer.classList.add(state);
-  }
+  productsContainer.classList.remove("fade-in", "fade-out");
+  productsContainer.classList.add(state);
 };
 
-const fadeTimeout = 345;
-
 // render products/msg with a fade-in animation
-const fadeRender = (data, message) => {
+const fadeRender = (data, message = "") => {
+  if (!productsContainer) return;
+
   //make the products fade-out
   setFade("fade-out");
 
   setTimeout(() => {
-    if (message) {
-      productsContainer.innerHTML = `<p class="no-result">${message}</p>`;
-    } else {
-      renderProducts(data);
-    }
+    productsContainer.innerHTML = message
+      ? renderMessage(message)
+      : renderProducts(data);
+
     setFade("fade-in"); //products fade-in
-  }, fadeTimeout);
+  }, FADE_DURATION_MS);
 };

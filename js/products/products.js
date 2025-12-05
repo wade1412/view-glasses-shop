@@ -20,9 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     fadeRender(allProducts);
   } catch (err) {
     console.error("Failed to load products:", err);
-    productsContainer.innerHTML = `
-      <p class="no-results">We couldn't load products. Please try again later</p>
-    `;
+    fadeRender(undefined, "Products list failed to load");
   }
 });
 

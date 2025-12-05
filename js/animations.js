@@ -20,7 +20,7 @@ const revealSystem = () => {
         //assign order if none
         if (!el.style.getPropertyValue("--reveal-order")) {
           const siblings = Array.from(
-            document.querySelectorAll('[data-reveal="scroll].reveal')
+            document.querySelectorAll('[data-reveal="scroll"].reveal')
           );
           const index = siblings.indexOf(el);
           el.style.setProperty("--reveal-order", index);
@@ -47,3 +47,33 @@ const revealSystem = () => {
 };
 
 window.addEventListener("DOMContentLoaded", revealSystem);
+
+export const initScrollReveal = () => {
+  const scrollElements = document.querySelectorAll(
+    '[data-reveal="scroll"].reveal'
+  );
+
+  const scrollObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const el = entry.target;
+
+        if (!el.style.getPropertyValue("--reveal-order")) {
+          const siblings = Array.from(
+            document.querySelectorAll('[data-reveal="scroll"].reveal')
+          );
+          const index = siblings.indexOf(el);
+          el.style.setProperty("--reveal-order", index);
+        }
+
+        el.classList.add("reveal--visible");
+        scrollObserver.unobserve(el);
+      });
+    },
+    { threshold: 0.35 }
+  );
+
+  scrollElements.forEach((el) => scrollObserver.observe(el));
+};
