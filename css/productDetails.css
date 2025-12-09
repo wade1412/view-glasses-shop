@@ -36,8 +36,10 @@
 
 .product-details-image img {
   width: 100%;
-  max-height: 25rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
+  max-width: clamp(240px, 40vw, 30rem);
   border-radius: var(--space-md);
   transition: transform 0.3s ease;
 
@@ -78,6 +80,7 @@
 .product-details-frame {
   font-size: var(--p-products);
   color: var(--color-text-muted);
+  line-height: 1.45;
 }
 
 .product-details-description {
@@ -99,12 +102,12 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 1.75rem;
-  width: min(8rem, 40%);
+  padding: var(--space-xs) var(--space-lg);
+  width: max-content;
   font-family: inherit;
   color: inherit;
   font-size: var(--product-details-md-text);
-  padding: var(--space-search-section-padding) 0;
+
   border: 1px solid transparent;
   border-radius: var(--search-filter-space);
   background-color: var(--color-surface);
@@ -125,6 +128,7 @@
 }
 
 .product-details-add-to-cart-button.added {
+  width: 12ch;
   background-color: var(--color-hover);
   color: var(--color-surface);
   transition: none;
@@ -159,9 +163,13 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 1.75rem;
+
   height: 1.75rem;
   border-radius: var(--search-filter-space);
+}
+
+.product-qty {
+  width: 1.75rem;
   border: 1px solid var(--color-border);
   background-color: var(--color-hover);
   color: var(--color-surface);
@@ -179,22 +187,10 @@
   &:active {
     box-shadow: 1px 1px 6px var(--color-hover);
   }
+}
 
-  &:nth-child(2) {
-    border: 1px solid transparent;
-    background-color: inherit;
-    color: inherit;
-    cursor: default;
-  }
-
-  &:nth-child(2):hover {
-    pointer-events: none;
-  }
-
-  &:nth-child(2):active {
-    pointer-events: none;
-    box-shadow: none;
-  }
+.qty-number {
+  width: 2rem;
 }
 
 @keyframes quantity-animation {
@@ -245,7 +241,8 @@
 
 .related-grid {
   display: grid;
-  grid-template-columns: repeat(1, minmax(10rem, 1fr));
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: var(--space-lg);
   margin: 0 auto;
 }

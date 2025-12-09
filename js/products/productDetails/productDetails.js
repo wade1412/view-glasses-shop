@@ -53,7 +53,7 @@ const renderRelated = () => {
 //-------- Events --------//
 
 productDetailsMain.addEventListener("click", (e) => {
-  const btn = e.target.closest(".products-details-add-to-cart-button");
+  const btn = e.target.closest(".product-details-add-to-cart-button");
   const qtyBtn = e.target.closest("[data-action]");
 
   if (btn) handleAddToCart(btn);
