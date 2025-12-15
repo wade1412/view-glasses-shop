@@ -4,24 +4,19 @@
   --section-padding: clamp(0.9rem, 1.5vh, 2rem);
   --section-content-padding: clamp(0.75rem, 1vh, 1.5rem);
   --grid-div-hover-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
-
-  /*Text Sizes For Responsiveness*/
-  --h1: clamp(1.8rem, 3vw, 2.8rem);
-  --p: clamp(0.95rem, 1.2vw, 1.25rem);
-  --button: clamp(1.1rem, 1.35vw, 1.4rem);
 }
 
-.main-container {
+.home-main-container {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 /*Typography font sizes*/
-.main-container h1 {
+.home-main-container h1 {
   font-size: var(--h1);
 }
 
-.main-container p {
+.home-main-container p {
   font-size: var(--p);
 }
 
@@ -31,39 +26,6 @@
 }
 /*Typography font sizes*/
 
-/*Bg styling*/
-.bg-section {
-  position: relative;
-  overflow: hidden;
-  color: var(--color-surface);
-}
-
-.bg-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
-  z-index: 1;
-}
-
-.bg-section .bg-image {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: contrast(80%);
-  transform: scale(1);
-  transition: transform 4s ease;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.bg-section:hover .bg-image {
-  transform: scale(1.03);
-}
-/*Bg styling*/
-
 .hero {
   width: 100%;
   height: 80dvh;
@@ -72,14 +34,12 @@
   justify-content: center;
 }
 
-.hero-image {
+.bg-image--hero {
   background-image: url("../resources/main-page-pictures/background-hero.jpg");
   pointer-events: none;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 1;
+.bg-content--hero {
   text-align: center;
   color: inherit;
   padding: var(--space-lg);
@@ -131,9 +91,10 @@
 }
 
 .hero-button {
+  font-family: inherit;
+  font-size: var(--button);
   margin-top: var(--space-md);
   min-width: 14ch;
-  font-family: inherit;
   color: var(--color-text-primary);
   padding: var(--space-sm);
   border: 1px solid var(--color-border);
@@ -287,7 +248,7 @@
   height: auto;
 }
 
-.go-to-products-section {
+.bg-section--go-to-products {
   position: relative;
   overflow: hidden;
 
@@ -296,12 +257,14 @@
   }
 }
 
-.go-to-products-img {
+.bg-img--go-to-products {
   background-image: url("../resources/main-page-pictures/background-go-products.jpg");
   pointer-events: none;
 }
 
 .go-to-products-link {
+  font-family: inherit;
+  font-size: var(--button);
   min-width: 18ch;
   text-align: center;
   position: relative;

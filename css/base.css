@@ -49,6 +49,9 @@
   --long-animation: 1s;
 
   /*Text Sizes*/
+  --h1: clamp(1.8rem, 3vw, 2.8rem);
+  --p: clamp(0.95rem, 1.2vw, 1.25rem);
+  --button: clamp(1.3rem, 1.6vw, 2rem);
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-md: 1.125rem;

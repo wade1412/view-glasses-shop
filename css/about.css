@@ -1,0 +1,151 @@
+@layer about;
+
+.page-main--about {
+  width: 100%;
+  font-size: calc(var(--p) * 1.1);
+  padding-inline: 0;
+}
+
+.about-us-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-section {
+  min-height: clamp(45dvh, 50dvh, 55dvh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-image--info-intro {
+  background-image: url("../resources/about-us-pictures/about-us-intro-picture.jfif");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.about-us-text-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-surface);
+  line-height: 1.35;
+  padding: var(--space-lg);
+}
+
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--space-md), var(--space-lg), var(--space-xl));
+  text-align: center;
+  width: min(85%, 25rem);
+  padding: var(--space-lg) 0;
+}
+
+.bg-image--info-middle {
+  background-image: url("../resources/about-us-pictures/about-us-middle-1.jpg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.info-middle-text {
+  gap: clamp(var(--space-sm), var(--space-md), var(--space-lg));
+  text-align: left;
+  width: min(90%, 40rem);
+}
+
+.info-middle-text h3 {
+  font-size: var(--h1);
+  text-align: center;
+}
+
+.section--info-end {
+  display: flex;
+  height: 100%;
+  min-height: 50dvh;
+  justify-content: center;
+}
+
+.text-grid-info-end {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.info-end-header-div {
+  font-size: var(--h1);
+}
+
+.info-end-header-div,
+.info-end-middle-text-div,
+.final-text-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-end-middle-text-div {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.final-text-div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: var(--space-sm);
+}
+
+.bg-grid {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  position: absolute;
+  inset: 0;
+}
+
+.bg-grid > div {
+  overflow: hidden;
+}
+
+.bg-grid img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+}
+
+.bg-grid-img-1 {
+  object-position: center 47%;
+}
+
+.bg-grid-img-2 {
+  object-position: center 67%;
+}
+
+.bg-grid-img-3 {
+  object-position: center 47%;
+}
+
+.bg-section--about-us-go-to-products {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-img--about-us-go-to-products {
+  background-image: url("../resources/about-us-pictures/about-us-go-to-products-picture.jfif");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@media (min-width: 1024px) {
+  .intro-text {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    text-align: center;
+    width: 100%;
+    padding: var(--space-lg);
+  }
+}

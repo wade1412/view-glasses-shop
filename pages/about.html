@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Golos+Text:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:wght@100..900&family=Raleway:wght@609&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      rel="icon"
+      href="../resources/view_glasses_logo.png"
+      type="image/x-icon"
+    />
+    <title>View Glasses - About Us</title>
+  </head>
+
+  <body class="">
+    <header class="header reveal" data-reveal="load">
+      <a class="logo-link" href="./index.html"
+        ><img class="logo" src="../resources/view_glasses_logo.png" alt="logo"
+      /></a>
+      <nav class="nav-bar">
+        <a href="./index.html" class="nav-item">Home</a>
+        <a href="./products.html" class="nav-item">Products</a>
+        <a href="./about.html" class="nav-item">About us</a>
+        <a class="cart-header-button" id="cart-header-button"
+          ><i class="fa-solid fa-cart-shopping"></i>
+          <p class="cart-item-count" id="cart-item-count">0</p></a
+        >
+      </nav>
+    </header>
+
+    <div class="cart-container" id="cart-container">
+      <div class="cart-header">
+        <h2 class="cart-name">Your cart</h2>
+        <button class="cart-button close" id="close-cart-button" type="button">
+          ×
+        </button>
+      </div>
+      <div class="cart-items-div" id="cart-items-div">
+        <div class="cart-item">
+          <div class="item-image">
+            <img src="../resources/view_glasses_logo.png" />
+          </div>
+          <div class="item-name">Name</div>
+          <div class="item-price">$200</div>
+          <div class="item-quantity">
+            <span id="substract-qty">-</span>
+            <span>1</span>
+            <span id="add-qty">+</span>
+          </div>
+        </div>
+      </div>
+      <div class="total-div">
+        <span>Total:</span>
+        <p id="cart-total-price">$0</p>
+      </div>
+      <div class="cart-button-wrapper">
+        <button class="cart-button clear" id="clear-cart-button" type="button">
+          Clear
+        </button>
+        <button class="cart-button check-out" type="button">Check out</button>
+      </div>
+    </div>
+
+    <main class="page-main--about">
+      <div class="about-us-container">
+        <section
+          class="bg-section bg-section--info-intro about-section reveal"
+          data-reveal="load"
+        >
+          <div class="bg-image bg-image--info-intro"></div>
+          <div class="bg-content intro-text reveal" data-reveal="load">
+            <p>
+              <strong>At View Glasses</strong>, we design eyewear that
+              prioritizes clarity, comfort, and everyday reliability. Our goal
+              is simple — create frames and lenses that feel natural, look
+              refined, and perform consistently.
+            </p>
+            <p>
+              Every pair is crafted to deliver a clear viewing experience
+              without compromising on style or comfort. Our approach values
+              clean design, thoughtful engineering, and practical functionality.
+            </p>
+            <p>
+              Whether you're working, studying, or exploring the world, your
+              eyewear should support you — not distract you.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="bg-section bg-section--info-middle about-section reveal"
+          data-reveal="scroll"
+        >
+          <div class="bg-image bg-image--info-middle"></div>
+          <div class="bg-content about-us-text-div info-middle-text">
+            <h3>What We Stand For</h3>
+            <p>
+              <strong>Clarity first</strong> — lenses engineered for sharpness
+              and reduced glare.
+            </p>
+            <p>
+              <strong>Comfort that lasts</strong> — lightweight frames designed
+              for all-day wear.
+            </p>
+            <p>
+              <strong>Reliable materials</strong> — built to withstand daily use
+              without losing form.
+            </p>
+            <p>
+              <strong>Timeless design</strong> — simple, modern shapes that suit
+              a wide range of styles.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="bg-section section--info-end reveal"
+          data-reveal="scroll"
+        >
+          <div class="bg-content text-grid-info-end">
+            <div class="info-end-header-div reveal" data-reveal="scroll">
+              <h3>Why We Do It</h3>
+            </div>
+            <div class="info-end-middle-text-div reveal" data-reveal="scroll">
+              <p>
+                Eyewear is personal. It shapes how you see the world — and how
+                the world sees you.
+              </p>
+              <p>
+                We create products that feel honest, functional, and genuinely
+                helpful.
+              </p>
+            </div>
+            <div class="final-text-div reveal" data-reveal="scroll">
+              <p>No trends for the sake of trends.</p>
+              <p>No overcomplication.</p>
+              <p><strong>Just eyewear that works.</strong></p>
+            </div>
+          </div>
+          <div class="bg-grid">
+            <div class="bg-grid-div">
+              <img
+                class="bg-grid-img-1"
+                src="../resources/about-us-pictures/grid-picture-1.jpg"
+                loading="lazy"
+              />
+            </div>
+            <div class="bg-grid-div">
+              <img
+                class="bg-grid-img-2"
+                src="../resources/about-us-pictures/grid-picture-2.jpg"
+                loading="lazy"
+              />
+            </div>
+            <div class="bg-grid-div">
+              <img
+                class="bg-grid-img-3"
+                src="../resources/about-us-pictures/grid-picture-3.jpg"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="bg-section about-section bg-section--about-us-go-to-products reveal"
+          data-reveal="scroll"
+        >
+          <a class="go-to-products-link" href="../pages/products.html">
+            Choose your pair</a
+          >
+          <div class="bg-image bg-img--about-us-go-to-products"></div>
+        </section>
+      </div>
+    </main>
+
+    <div class="footer">
+      <div class="social-icons">
+        <a href="https://www.instagram.com/" class="social-link" target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+
+        <a href="https://x.com/?lang=uk" class="social-link" target="_blank"
+          ><i class="fab fa-x-twitter"></i
+        ></a>
+        <a
+          href="https://www.facebook.com/?locale=uk_UA"
+          class="social-link"
+          target="_blank"
+          ><i class="fab fa-facebook"></i
+        ></a>
+      </div>
+      <div class="footer-logo-div">
+        <a class="footer-logo-link" href="./index.html"
+          ><img
+            class="logo footer-logo"
+            src="../resources/view_glasses_logo.png"
+            alt="logo"
+          />
+          <p>© 2025 View Glasses</p></a
+        >
+      </div>
+    </div>
+
+    <script type="module" src="../js/about.js"></script>
+  </body>
+</html>
