@@ -1,12 +1,13 @@
-import { getProducts } from "../../api.js";
+import { getProducts } from "../../api/api.js";
 import { cart } from "../../cart/cart.js";
 import { renderCartItems, updateCartItemCount } from "../../cart/cartUI.js";
 import { productDetailsHTML, relatedProductsHTML } from "./productDetailsUI.js";
 import { productDetailsState as state } from "./productDetailsUI.js";
+import { addToCartWithAnimation } from "../productsUI.js";
 
 import "../../animations.js";
-import { initScrollReveal } from "../../animations.js";
 import "../../cart/cartController.js";
+import { initScrollReveal } from "../../animations.js";
 
 const params = new URLSearchParams(window.location.search);
 const currentProdId = Number(params.get("id"));
@@ -31,7 +32,6 @@ async function loadProductPage() {
 
   renderProduct();
   renderRelated();
-  initScrollReveal();
 }
 
 const renderProduct = () => {
@@ -48,6 +48,9 @@ const renderRelated = () => {
     .slice(0, 4);
 
   relatedProductsSection.innerHTML = relatedProductsHTML(related);
+  requestAnimationFrame(() => {
+    initScrollReveal();
+  });
 };
 
 //-------- Events --------//
@@ -97,3 +100,11 @@ const handleAddToCart = (btn) => {
 };
 
 loadProductPage();
+
+relatedProductsSection.addEventListener("click", (event) => {
+  const addBtn = event.target.closest(".related-add-to-cart-button");
+  if (!addBtn) return;
+  event.preventDefault();
+  event.stopPropagation();
+  addToCartWithAnimation(addBtn, state.products);
+});

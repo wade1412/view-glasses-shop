@@ -332,7 +332,7 @@ select {
     transform: translateY(-2px) scale(1.03);
   }
 
-  20% {
+  25% {
     transform: translateY(-3px) scale(1.1);
   }
 

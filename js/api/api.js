@@ -1,8 +1,9 @@
-const baseUrl = "http://localhost:4000/products";
+export const API_BASE = "http://localhost:4000";
+const PRODUCTS_URL = `${API_BASE}/products`;
 
 export async function getProducts() {
   try {
-    const res = await fetch(baseUrl);
+    const res = await fetch(PRODUCTS_URL);
 
     if (!res.ok) {
       throw new Error(`Failed to fetch products`);
@@ -18,7 +19,7 @@ export async function getProducts() {
 
 export async function getProductById(id) {
   try {
-    const res = await fetch(`${baseUrl}/${id}`);
+    const res = await fetch(`${PRODUCTS_URL}/${id}`);
 
     if (!res.ok) {
       throw new Error(`Failed to fetch product by id`);

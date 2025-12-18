@@ -24,7 +24,7 @@
       "id": 3,
       "name": "Urban Matte",
       "price": 99,
-      "image": "https://visiondrishti.com/wp-content/uploads/2025/03/Mint-Green-Urban-Bold-Sunglasses-9.jpg",
+      "image": "https://img4.dhresource.com/webp/m/0x0/f3/albu/ry/j/29/d2bc7868-88af-42a6-aead-dec851f10f69.jpg",
       "category": "eyeglasses",
       "frame": "metal",
       "color": "black",
@@ -32,13 +32,13 @@
     },
     {
       "id": 4,
-      "name": "Sunset Gradient",
+      "name": "Green Gradient",
       "price": 119,
-      "image": "https://media.istockphoto.com/id/1438350373/photo/pair-of-sunglasses-on-the-beach-with-the-reflection-of-the-sunset.jpg?s=612x612&w=0&k=20&c=a0FfYmfbrOAtfBFG78L3hiHMhdNS68drwfxqCR7jrDs=",
+      "image": "https://weareeyes.co/cdn/shop/products/Double-B-Green_bd079921-cefd-483a-af76-eca67657fc2d.jpg?v=1682339454",
       "category": "sunglasses",
       "frame": "plastic",
-      "color": "brown gradient",
-      "description": "Stylish gradient-tint lenses with smooth brown plastic frame."
+      "color": "green gradient",
+      "description": "Stylish gradient-tint lenses with smooth green plastic frame."
     },
     {
       "id": 5,
@@ -64,7 +64,7 @@
       "id": 7,
       "name": "Retro Gold Wire",
       "price": 99,
-      "image": "https://media.istockphoto.com/id/637218182/photo/classic-gold-round-glasses.jpg?s=612x612&w=0&k=20&c=MXCzXDYhxiXR8uuBPJkXIIjnoLARHt4kal5OFzo168M=",
+      "image": "https://res.ygstatic.com/frame/1516/15161/1/2.1800.1689957247-c26.jpg",
       "category": "eyeglasses",
       "frame": "metal",
       "color": "gold",
@@ -74,7 +74,7 @@
       "id": 8,
       "name": "Ocean Wave",
       "price": 99,
-      "image": "https://oceanwaves.com/cdn/shop/files/JXB-WHT-OSB_5fb1cb5f-f78f-42f7-90ed-6f7c00ffd4e4.jpg?v=1704207619",
+      "image": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/1080x1080/9df78eab33525d08d6e5fb8d27136e95//h/i/kids-glasses:-black-blue-transparent-black-full-rim-round-kids--5-8-yrs--hooper-astra-hooper-hp-e10015-c1_hooper-hp-e10015-c1-eyeglasses_g_1023_22_march23.jpg.jpg",
       "category": "sunglasses",
       "frame": "plastic",
       "color": "blue gradient",
@@ -90,5 +90,6 @@
       "color": "black",
       "description": "Performance sunglasses built with carbon fiber for extra durability."
     }
-  ]
+  ],
+  "orders": []
 }

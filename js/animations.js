@@ -31,7 +31,7 @@ const revealSystem = () => {
       });
     },
     {
-      threshold: 0.35,
+      threshold: 0.2,
       rootMargin: "0px 0px -5% 0px",
     }
   );
@@ -68,11 +68,15 @@ export const initScrollReveal = () => {
           el.style.setProperty("--reveal-order", index);
         }
 
-        el.classList.add("reveal--visible");
+        requestAnimationFrame(() => {
+          el.classList.add("reveal--visible");
+        });
         scrollObserver.unobserve(el);
       });
     },
-    { threshold: 0.35 }
+    {
+      threshold: 0.15,
+    }
   );
 
   scrollElements.forEach((el) => scrollObserver.observe(el));

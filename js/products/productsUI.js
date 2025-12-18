@@ -1,10 +1,13 @@
+import {
+  renderCartItems,
+  addProductToCart,
+  updateCartItemCount,
+} from "../cart/cartUI.js";
+import { cart } from "../cart/cart.js";
+
 export { fadeRender };
 
 export const productsContainer = document.getElementById("products-container");
-
-if (!productsContainer) {
-  console.error("productsContainer not found in DOM");
-}
 
 /*Product card template*/
 const productCardHTML = ({
@@ -79,4 +82,34 @@ const fadeRender = (data, message = "") => {
 
     setFade("fade-in"); //products fade-in
   }, FADE_DURATION_MS);
+};
+
+export const viewProductWithAnimation = (target) => {
+  target.classList.add("added");
+  setTimeout(() => {
+    target.classList.remove("added");
+  }, 700);
+};
+
+export const addToCartWithAnimation = (button, prodArr) => {
+  const prodId = Number(button.getAttribute("data-product-id"));
+  if (!prodId) return;
+
+  button.disabled = true;
+  button.classList.add("added");
+  button.textContent = "Added!";
+
+  addProductToCart(prodId, prodArr);
+  updateCartItemCount(cart.items.length);
+  requestAnimationFrame(() => {
+    renderCartItems();
+  });
+
+  const defaultLabel = button.dataset.defaultLabel || "Add to cart";
+
+  setTimeout(() => {
+    button.classList.remove("added");
+    button.textContent = defaultLabel;
+    button.disabled = false;
+  }, 700);
 };

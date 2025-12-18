@@ -1,4 +1,5 @@
 import { cart } from "./cart.js";
+import { createOrder } from "../api/orders.js";
 import { renderCartItems, updateCartItemCount } from "./cartUI.js";
 
 cart.loadState(); //load the state from local storage
@@ -10,6 +11,7 @@ const body = document.querySelector("body");
 const cartContainer = document.getElementById("cart-container");
 const closeCartButton = document.getElementById("close-cart-button");
 const clearCartButton = document.getElementById("clear-cart-button");
+const checkoutBtn = document.getElementById("check-out-button");
 
 const removeCartItem = (id) => {
   const itemEl = document.querySelector(`[data-cart-item-id="${id}"]`);
@@ -50,7 +52,7 @@ const changeProductQty = (itemProductId, qtyChange) => {
   cart.saveState();
 };
 
-const clearCartItems = () => {
+const clearCartItems = (onComplete) => {
   const cartItemsEls = document.querySelectorAll(".cart-item");
   cartItemsEls.forEach((cartItemEl, index) => {
     cartItemEl.style.animationDelay = `${index * 60}ms`;
@@ -67,9 +69,15 @@ const clearCartItems = () => {
       cart.saveState();
       updateCartItemCount(0);
       renderCartItems();
+
+      onComplete?.();
     },
     { once: true }
   );
+};
+
+const closeCart = () => {
+  document.body.classList.remove("showCart");
 };
 
 const handleOutsideCartClick = (e) => {
@@ -77,9 +85,17 @@ const handleOutsideCartClick = (e) => {
   const isCartButton = e.target.closest("#cart-header-button");
   const isQtyButton = e.target.closest(".qty");
   if (!isClickInsideCart && !isCartButton && !isQtyButton) {
-    body.classList.remove("showCart");
+    closeCart();
     document.removeEventListener("click", handleOutsideCartClick);
   }
+};
+
+const resetCartSuccess = () => {
+  const successEl = document.querySelector(".cart-success");
+  if (!successEl) return;
+
+  successEl.classList.remove("visible");
+  successEl.classList.add("hidden");
 };
 
 //DOM listeners
@@ -104,6 +120,7 @@ cartContainer.addEventListener("click", (event) => {
 });
 
 showCartButton.addEventListener("click", () => {
+  resetCartSuccess();
   body.classList.toggle("showCart");
   setTimeout(() => {
     document.addEventListener("click", handleOutsideCartClick);
@@ -111,7 +128,7 @@ showCartButton.addEventListener("click", () => {
 });
 
 closeCartButton.addEventListener("click", () => {
-  body.classList.toggle("showCart");
+  closeCart();
   setTimeout(() => {
     document.addEventListener("click", handleOutsideCartClick);
   }, 0);
@@ -119,9 +136,38 @@ closeCartButton.addEventListener("click", () => {
 
 clearCartButton.addEventListener("click", () => {
   if (cart.items.length === 0) {
-    body.classList.toggle("showCart");
+    closeCart();
     return;
   }
 
   clearCartItems();
+});
+
+checkoutBtn.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const successEl = document.querySelector(".cart-success");
+  try {
+    checkoutBtn.disabled = true;
+    checkoutBtn.textContent = "Processing...";
+
+    const order = await createOrder(cart);
+    clearCartItems(() => {
+      setTimeout(() => {
+        successEl.classList.remove("hidden");
+        requestAnimationFrame(() => {
+          successEl.classList.add("visible");
+        });
+      }, 150);
+
+      setTimeout(() => {
+        closeCart();
+      }, 2000);
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message || "Checkout failed. Try again.");
+  } finally {
+    checkoutBtn.disabled = false;
+    checkoutBtn.textContent = "Check out";
+  }
 });

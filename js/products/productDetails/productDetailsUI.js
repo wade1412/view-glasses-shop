@@ -38,27 +38,43 @@ export const productDetailsHTML = ({
 
 export const relatedProductsHTML = (items) => `
 <h3 class="reveal" data-reveal="scroll">You might also like</h3>
+
 <div class="related-grid">
   ${items
     .map(
-      (p, index) => `
-      <a 
+      (p) => `
+      <article 
         class="related-card-wrapper reveal"
         data-reveal="scroll"
-        style="--reveal-order: ${index * 2}s"
-        href="./productDetails.html?id=${p.id}">
-        
-        <div class="related-card">
+        data-product-id="${p.id}"
+      >
+        <a 
+          class="related-card-link"
+          href="./productDetails.html?id=${p.id}"
+        >
+          <div class="related-card">
             <div class="related-card-img-container">
-              <img src="${p.image}" />
+              <img src="${p.image}" alt="${p.name}" loading="lazy" />
             </div>
-            <div class="related-card-text">
-                <p>${p.name}</p>
-                <span>$${p.price}</span>
-            </div>
-        </div>
 
-      </a>
+            <div class="related-card-text">
+              <p>${p.name}</p>
+              <span>$${p.price}</span>
+            </div>
+          </div>
+        </a>
+
+        <div class="related-add-to-cart-div">
+          <button 
+            class="related-add-to-cart-button"
+            data-product-id="${p.id}"
+            type="button"
+            data-stop-nav
+          >
+            Add to cart
+          </button>
+        </div>
+      </article>
     `
     )
     .join("")}
