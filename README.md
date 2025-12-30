@@ -1,4 +1,5 @@
 # View Glasses – Frontend E-Commerce Demo
+https://wade1412.github.io/view-glasses-shop/index.html
 
 A responsive e-commerce frontend built with **Vanilla JavaScript**, focusing on
 state management, UI animations, and clean architecture.
