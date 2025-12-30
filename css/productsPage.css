@@ -241,7 +241,6 @@ select {
   &:hover {
     box-shadow: 1px 1px var(--space-xl) var(--color-border);
     transform: translateY(-0.2rem);
-    cursor: pointer;
   }
 }
 

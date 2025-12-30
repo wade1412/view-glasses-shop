@@ -1,5 +1,6 @@
-import { API_BASE } from "../api/api.js";
-const ORDERS_URL = `${API_BASE}/orders`;
+import { IS_PROD } from "../config.js";
+
+const generateOrderId = () => crypto.randomUUID?.() || `order_${Date.now()}`;
 
 export const createOrder = async (cart) => {
   if (!cart?.items?.length) {
@@ -7,6 +8,7 @@ export const createOrder = async (cart) => {
   }
 
   const orderPayload = {
+    id: generateOrderId(),
     items: cart.items.map(({ id, name, price, quantity }) => ({
       id,
       name,
@@ -18,16 +20,17 @@ export const createOrder = async (cart) => {
     status: "mock-paid",
   };
 
-  const res = await fetch(ORDERS_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(orderPayload),
-  });
+  if (IS_PROD) {
+    let orders = [];
+    try {
+      orders = JSON.parse(localStorage.getItem("orders")) || [];
+    } catch {
+      orders = [];
+    }
 
-  if (!res.ok) {
-    throw new Error("Failed to create order");
+    orders.push(orderPayload);
+    localStorage.setItem("orders", JSON.stringify(orders));
+    return orderPayload;
   }
 
   return res.json();
